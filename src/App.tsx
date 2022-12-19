@@ -1,19 +1,12 @@
 import React from "react";
-import typeLogo from "./images/typeface-based-logo.png";
+import Nav from "./components/Nav"
+import Header from "./components/Header"
 
 function App() {
   return (
     <>
-      <nav className="nav">
-        <div className="nav__header">
-          <img className="nav__logo" src={typeLogo} alt="logo" />
-        </div>
-      </nav>
-      <header className="header">
-        <h1 className="headline">
-          <span className="discover">Discover</span> your next watch
-        </h1>
-      </header>
+    <Nav />
+    <Header />
       <form action="#" className="searchbar">
         <input
           type="text"
