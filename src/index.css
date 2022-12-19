@@ -3,6 +3,7 @@ Variables
 ***************************/
 :root {
   --blue: #2e079d;
+  --blue-light: hsl(256, 91%, 72%);
   --white: #ffffff;
   --offWhite: #f5f5f5;
   --outline-grey: #d5d4d8;
@@ -52,7 +53,7 @@ Global Styles
 ***************************/
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   background-color: #ffffff;
 }
 
@@ -105,9 +106,26 @@ Searchbar
 
 .searchbar__input {
   border-color: var(--outline-grey);
+  margin-right: 8px;
+}
+
+.searchbar__input:focus-visible {
+  border-color: var(--blue);
 }
 
 .searchbar__submit {
   color: var(--white);
   background-color: var(--blue);
+  border-color: var(--blue);
+  transition: 0.5s;
+}
+
+.searchbar__submit:hover {
+  background-color: var(--blue-light);
+  border-color: var(--blue-light);
+}
+
+.searchbar__submit:active {
+  background-color: var(--blue-light);
+  scale: 1.05;
 }
