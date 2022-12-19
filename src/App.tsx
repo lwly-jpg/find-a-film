@@ -1,14 +1,10 @@
 import React from "react";
-import typeLogo from "./images/typeface-based-logo.png";
+import Nav from "./components/Nav"
 
 function App() {
   return (
     <>
-      <nav className="nav">
-        <div className="nav__header">
-          <img className="nav__logo" src={typeLogo} alt="logo" />
-        </div>
-      </nav>
+    <Nav />
       <header className="header">
         <h1 className="headline">
           <span className="discover">Discover</span> your next watch
