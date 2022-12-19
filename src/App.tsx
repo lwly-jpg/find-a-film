@@ -1,15 +1,12 @@
 import React from "react";
 import Nav from "./components/Nav"
+import Header from "./components/Header"
 
 function App() {
   return (
     <>
     <Nav />
-      <header className="header">
-        <h1 className="headline">
-          <span className="discover">Discover</span> your next watch
-        </h1>
-      </header>
+    <Header />
       <form action="#" className="searchbar">
         <input
           type="text"
