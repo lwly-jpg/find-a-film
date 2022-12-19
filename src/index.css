@@ -1,6 +1,113 @@
+/***************************
+Variables
+***************************/
+:root {
+  --blue: #2e079d;
+  --white: #ffffff;
+  --offWhite: #f5f5f5;
+  --outline-grey: #d5d4d8;
+  --black: #000000;
+  --border-radius: 5px;
+}
+/***************************
+Resets
+***************************/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+input {
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
 body {
   margin: 0;
+}
+
+/***************************
+Global Styles
+***************************/
+
+body {
   font-family: "Raleway", sans-serif;
   background-color: #ffffff;
 }
 
+/***************************
+Navbar
+***************************/
+
+.nav {
+  height: 94px;
+  width: 100%;
+  box-shadow: 0 3px 7px 0 #0000001a;
+}
+
+.nav__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/***************************
+Header
+***************************/
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.headline {
+  margin: 40px 0;
+}
+
+.discover {
+  color: var(--blue);
+}
+
+/***************************
+Searchbar
+***************************/
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+}
+
+.searchbar__input,
+.searchbar__submit {
+  padding: 10px;
+}
+
+.searchbar__input {
+  border-color: var(--outline-grey);
+}
+
+.searchbar__submit {
+  color: var(--white);
+  background-color: var(--blue);
+}
