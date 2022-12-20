@@ -4,6 +4,7 @@ import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import mock_1 from './mocks/ghost-busters-thumbnail_1.png';
 import mock_2 from './mocks/ghost-busters-thumbnail_2.png';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

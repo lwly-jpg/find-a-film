@@ -160,3 +160,19 @@ Results
   gap: 10px;
   padding: 10px 0;
 }
+
+/***************************
+Footer
+***************************/
+
+.footer {
+  display: flex;
+  justify-content: center;
+  font-size: 7px;
+}
+
+.footerlogo {
+  display: flex;
+  height: 15px;
+  align-self: center;
+}
