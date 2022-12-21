@@ -30,13 +30,9 @@ const SearchResult = () => {
         />
         <input type='submit' value='Search' className='searchbar__submit' />
       </form>
-
-      <h3>Results</h3>
-
       {results.map((result: any) => (
          <ResultCard {...result} /> 
       ))}
-
     </div>
   );
 };
