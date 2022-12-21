@@ -13,7 +13,10 @@ const SearchBar = () => {
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log(data.results);
+
         setResults(data.results);
+        setUserInput('');
       });
   };
 
@@ -26,6 +29,7 @@ const SearchBar = () => {
           placeholder='find your film'
           className='searchbar__input'
           onChange={(event) => setUserInput(event.target.value)}
+          value={userInput}
         />
         <input type='submit' value='Search' className='searchbar__submit' />
       </form>
