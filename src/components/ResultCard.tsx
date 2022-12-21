@@ -1,5 +1,3 @@
-import SearchResult from "./SearchResult";
-
 import mock_1 from '../mocks/ghost-busters-thumbnail_1.png';
 
 const ResultCard = (result: any) => {
@@ -9,9 +7,8 @@ const ResultCard = (result: any) => {
     <div className='result'>
       <img className='result__image' src={mock_1} alt='' />
       <div className='result__info'>
-        <div className='result__header'>{result.genre_ids.map((item: number) => (genre[item]: any)) }</div>
-        <div className='result__header'>{genre[27]}</div>
-        <h3 className='result__title'>{result.title}</h3>
+        <h2 className='result__title'>{result.title}</h2>
+        <div className='result__header'>{result.genre_ids.map((item: {[key: string]: number}) => (genre[item]) + ' ')}</div>
         <div className='result__minor-info'>{result.release_date.split("-")[0]} - PG - 1h45m</div>
           <div className='result__description'>
           {result.overview.substring(0,230)}...
