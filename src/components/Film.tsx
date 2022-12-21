@@ -9,6 +9,7 @@ const Film = () => {
   const [filmData, setFilmData] = useState<any>();
   const [watchProviders, setWatchProviders] = useState<any>();
 
+  // GET filmData
   useEffect(() => {
      fetch(`https://api.themoviedb.org/3/movie/${film_id}?api_key=${apiKey}&language=en-GB}`)
       .then((response) => response.json())
@@ -17,6 +18,7 @@ const Film = () => {
         })
   }, [film_id]);
 
+  // GET watchProviders data
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/${film_id}/watch/providers?api_key=${apiKey}&language=en-GB`)
      .then((response) => response.json())
@@ -33,12 +35,17 @@ const Film = () => {
       {filmData && watchProviders ? 
       <div>
         <h1>{filmData.title} </h1>
-        <p>{filmData.overview}</p>
-        <p>Released: {filmData.release_date}</p>
-        <p>Runtime: {filmData.runtime} mins</p>
-        <p>{filmData.vote_average} / 10</p>
-        <p>Watch on:</p>
-        
+        <div>{filmData.overview}</div>
+        <div>Released: {filmData.release_date}</div>
+        <div>Runtime: {filmData.runtime} mins</div>
+        <div>{filmData.vote_average} / 10</div>
+        <h3>Watch on:</h3>
+        {watchProviders.flatrate.map((provider: any) => (
+        <div key={provider.provder_id}>
+          <div>{provider.provider_name}</div>
+          <div>{provider.logo_path}</div>
+        </div>
+      ))}
       </div> 
       : ""}
 
