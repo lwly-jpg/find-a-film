@@ -4,6 +4,7 @@ import apiKey from '../apiKey';
 const SearchBar = () => {
   const [results, setResults] = useState<{ [key: string]: any }>([]);
   const [userInput, setUserInput] = useState('');
+  const [msg, setMsg] = useState('');
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -13,9 +14,23 @@ const SearchBar = () => {
     )
       .then((response) => response.json())
       .then((data) => {
+        if (data.results === undefined) {
+          setMsg('Must input a search');
+          setResults([]);
+        }
         const newResults = data.results || [];
+        if (data.results.length === 0) {
+          setMsg('Sorry no results');
+          setResults([]);
+        }
+        if (data.results.length > 0) {
+          setMsg(`Results for ${userInput}`);
+        }
         setResults(newResults);
         setUserInput('');
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -32,14 +47,11 @@ const SearchBar = () => {
         />
         <input type='submit' value='Search' className='searchbar__submit' />
       </form>
-
-      <h3>Results</h3>
       <div className='results__container'>
-        {results.length === 0
-          ? 'Sorry no matches'
-          : results.map((element: any) => (
-              <div key={element.id}>{element.title}</div>
-            ))}
+        <h3 className='results__message'>{msg}</h3>
+        {results.map((element: any) => (
+          <div key={element.id}>{element.title}</div>
+        ))}
       </div>
     </div>
   );
