@@ -34,8 +34,7 @@ const SearchResult = () => {
       <h3>Results</h3>
 
       {results.map((result: any) => (
-         <ResultCard key={result.id} {...result} /> 
-        // <div key={element.id}>{element.title}</div>
+         <ResultCard {...result} /> 
       ))}
 
     </div>
