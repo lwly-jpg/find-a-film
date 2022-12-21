@@ -31,9 +31,11 @@ const SearchBar = () => {
       </form>
 
       <h3>Results</h3>
-      {results.map((element: any) => (
-        <div key={element.id}>{element.title}</div>
-      ))}
+      {results.length === 0
+        ? 'Sorry no matches'
+        : results.map((element: any) => (
+            <div key={element.id}>{element.title}</div>
+          ))}
     </div>
   );
 };
