@@ -1,5 +1,5 @@
 import Header from "./Header";
-import SearchBar from "./SearchBar";
+import SearchResult from "./SearchResult";
 import mock_1 from '../mocks/ghost-busters-thumbnail_1.png';
 import mock_2 from '../mocks/ghost-busters-thumbnail_2.png';
 
@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <SearchBar />
+      <SearchResult />
       <div className='results__container'>
         <div className='result'>
           <img className='result__image' src={mock_1} alt='' />
