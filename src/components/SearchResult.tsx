@@ -19,7 +19,7 @@ const SearchResult = () => {
   };
 
   return (
-    <div>
+    <div className='search'>
       <form action='#' className='searchbar' onSubmit={onSubmit}>
         <input
           type='text'
