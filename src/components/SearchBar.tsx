@@ -2,7 +2,7 @@ import { useState } from 'react';
 import apiKey from '../apiKey';
 
 const SearchBar = () => {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<{ [key: string]: any }>([]);
   const [userInput, setUserInput] = useState('');
 
   const onSubmit = async (e: any) => {
@@ -13,9 +13,8 @@ const SearchBar = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.results);
-
-        setResults(data.results);
+        const newResults = data.results || [];
+        setResults(newResults);
         setUserInput('');
       });
   };
@@ -35,11 +34,13 @@ const SearchBar = () => {
       </form>
 
       <h3>Results</h3>
-      {results.length === 0
-        ? 'Sorry no matches'
-        : results.map((element: any) => (
-            <div key={element.id}>{element.title}</div>
-          ))}
+      <div className='results__container'>
+        {results.length === 0
+          ? 'Sorry no matches'
+          : results.map((element: any) => (
+              <div key={element.id}>{element.title}</div>
+            ))}
+      </div>
     </div>
   );
 };
