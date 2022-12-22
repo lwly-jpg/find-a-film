@@ -1,14 +1,16 @@
-import React from "react";
-import typeLogo from "../images/typeface-based-logo.png";
+import typeLogo from '../images/typeface-based-logo.png';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <nav className="nav">
-      <div className="nav__header">
-        <img className="nav__logo" src={typeLogo} alt="logo" />
+    <nav className='nav'>
+      <div className='nav__header'>
+        <Link to='/'>
+          <img className='nav__logo' src={typeLogo} alt='logo' />
+        </Link>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 export default Nav;
