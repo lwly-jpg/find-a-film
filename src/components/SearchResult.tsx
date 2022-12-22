@@ -50,9 +50,18 @@ const SearchResult = () => {
       </form>
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
-      {results.map((result: any) => (
-        <ResultCard key={result.id} {...result} />
-      ))}
+        {results.sort(function(o1: any,o2: any){
+          if (o1.release_date > o2.release_date) {
+            return -1;
+          } else if(o1.release_date < o2.release_date) {
+            return  1;
+          } else {
+            return  0;
+          }
+        })
+        .map((result: any) => (
+          <ResultCard key={result.id} {...result} />
+        ))}
       </div>
     </div>
   );
