@@ -50,8 +50,8 @@ const SearchResult = () => {
       </form>
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
-      {results.map((result: any, index) => (
-        <ResultCard key={index} {...result} />
+      {results.map((result: any) => (
+        <ResultCard key={result.id} {...result} />
       ))}
       </div>
     </div>
