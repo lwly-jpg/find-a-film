@@ -4,10 +4,12 @@ import apiKey from '../apiKey';
 import star from '../images/star.png';
 import './Film.css';
 
+// Images for film posters
 const getPosterURL = (posterpath: string) => {
   return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
 };
 
+// Icons for WatchProviders
 const getIconURL = (iconpath: string) => {
   return `https://image.tmdb.org/t/p/original/${iconpath}`;
 };
@@ -32,12 +34,9 @@ const Film = () => {
     fetch(`https://api.themoviedb.org/3/movie/${film_id}/watch/providers?api_key=${apiKey}&language=en-GB`)
      .then((response) => response.json())
        .then(async (data) => {
-        setWatchProviders(data.results.GB)
+        setWatchProviders(data.results.GB) // .GB === country
        })
  }, [film_id]);
-
-  console.log(filmData)
-  console.log(watchProviders)
 
   return (
     <div>
@@ -58,7 +57,7 @@ const Film = () => {
             </div>
             <div className='film__header--rating'>
               <img className='rating' src={star} alt='star-icon' />
-              <div className='score'>{filmData.vote_average} / 10</div>
+              <div className='score'>{filmData.vote_average.toFixed(1)} / 10</div>
             </div>
             <div className='film__header--imdb'>
               <a href={`https://www.imdb.com/title/${filmData.imdb_id}`}>View on IMDB</a>
