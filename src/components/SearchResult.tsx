@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import apiKey from '../apiKey';
+import ResultCard from './ResultCard';
 
-const SearchBar = () => {
-  const [results, setResults] = useState<{ [key: string]: any }>([]);
+const SearchResult = () => {
+  const [results, setResults] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [msg, setMsg] = useState('');
 
@@ -35,7 +36,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className='search'>
       <form action='#' className='searchbar' onSubmit={onSubmit}>
         <input
           type='text'
@@ -49,12 +50,12 @@ const SearchBar = () => {
       </form>
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
-        {results.map((element: any) => (
-          <div key={element.id}>{element.title}</div>
-        ))}
+      {results.map((result: any) => (
+         <ResultCard {...result} /> 
+      ))}
       </div>
     </div>
   );
 };
 
-export default SearchBar;
+export default SearchResult;
