@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import apiKey from '../apiKey';
-import '../components/SearchResult.css'
+import '../components/SearchResult.css';
 import ResultCard from './ResultCard';
 
 const SearchResult = () => {
@@ -10,16 +10,19 @@ const SearchResult = () => {
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-
+    // API requires at least one character
+    if (!userInput) {
+      setMsg('Must input a search');
+      setResults([]);
+      return;
+    }
     await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${userInput}&api_key=${apiKey}`
     )
       .then((response) => response.json())
       .then((data) => {
-        if (data.results === undefined) {
-          setMsg('Must input a search');
-          setResults([]);
-        }
+        // no results returns nothing
+        // need empty array to avoid errors
         const newResults = data.results || [];
         if (data.results.length === 0) {
           setMsg('Sorry no results');
@@ -51,9 +54,9 @@ const SearchResult = () => {
       </form>
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
-      {results.map((result: any) => (
-        <ResultCard key={result.id} {...result} />
-      ))}
+        {results.map((result: any) => (
+          <ResultCard key={result.id} {...result} />
+        ))}
       </div>
     </div>
   );
