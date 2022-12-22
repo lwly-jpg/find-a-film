@@ -67,7 +67,7 @@ const Film = () => {
               <span className='helper__blue'>Released: </span>
               {filmData.release_date.split('-')[0]}
             </div>
-            <div className="film__minor-info"><span className="helper__blue">Runtime: </span>{filmData.runtime} mins</div>
+            <div className="film__minor-info"><span className="helper__blue">Runtime: </span>{convertRunTime(filmData.runtime)}</div>
             <div className="film__minor-info"><span className="helper__blue">Watch on: </span></div>
             <div className="film__providers">
             {watchProviders.flatrate.map((provider: any) => (
@@ -89,6 +89,15 @@ const Film = () => {
   );
 
 };
+
+const convertRunTime = (totalMinutes: number) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const mins = totalMinutes % 60;
+  return `${hours} h : ${mins} m`
+};
+
+
+
 
 export default Film;
 
