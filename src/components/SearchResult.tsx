@@ -7,10 +7,11 @@ const SearchResult = () => {
   const [results, setResults] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [msg, setMsg] = useState('');
+  const [isSorted, setIsSorted] = useState(false);
+  const [prevResults, setPrevResults] = useState<any>();
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-
     await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${userInput}&api_key=${apiKey}`
     )
@@ -34,21 +35,29 @@ const SearchResult = () => {
       .catch((err) => {
         console.log(err);
       });
+
   };
 
 
   const sortByReleaseYear = () => {
-    const sortedResults = [...results].sort(function(o1: any, o2: any){
-      if (o1.release_date > o2.release_date) {
-        return -1;
-      } else if(o1.release_date < o2.release_date) {
-        return  1;
-      } else {
-        return  0;
-      }
-    })
+    if (isSorted === false) {
+      setPrevResults(results)
+      const sortedResults = [...results].sort(function(o1: any, o2: any){
+        if (o1.release_date > o2.release_date) {
+          return -1;
+        } else if(o1.release_date < o2.release_date) {
+          return  1;
+        } else {
+          return  0;
+        }
+      })
+      setResults(sortedResults);
+      setIsSorted(true);
+    } else {
+      setIsSorted(false);
+      setResults(prevResults);
+    }
 
-    setResults(sortedResults);
   }
 
   return (
@@ -67,7 +76,10 @@ const SearchResult = () => {
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
         { results.length > 0 && <div className='sort__options'>
-          Sort by: <button onClick={sortByReleaseYear}>Release year</button>
+          Sort by: 
+          <button onClick={sortByReleaseYear}>
+            { isSorted ? "Relevance" :  "Release year"}
+          </button>
         </div>}
         {results.filter((item: any) => {
           if (item.poster_path !== null && item.release_date < date ) {
