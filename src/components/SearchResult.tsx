@@ -51,7 +51,7 @@ const SearchResult = () => {
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
       {results.map((result: any) => (
-         <ResultCard {...result} /> 
+        <ResultCard {...result} />
       ))}
       </div>
     </div>

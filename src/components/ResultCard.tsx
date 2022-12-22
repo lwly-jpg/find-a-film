@@ -6,6 +6,7 @@ const getPosterURL = (posterpath: string) => {
 };
 
 const ResultCard = (result: any) => {
+
   const genreList = result.genre_ids.map((item: number) => genre[item]).join(', ');
 
   return (
@@ -25,9 +26,8 @@ const ResultCard = (result: any) => {
           </div>
           <Link className='result__title' to={'/film/' + result.id}>{result.title}</Link>
           <div className='result__minor-info'>
-            Released: {result.release_date.split('-')[0]}
+            <span className="helper__blue">Released:</span> {result.release_date.split('-')[0]}
           </div>
-          <div className='result__header--genre'>{genreList}</div>
           <div className='result__description'>
             {result.overview.substring(0, 230)}...
           </div>
@@ -37,7 +37,7 @@ const ResultCard = (result: any) => {
   );
 };
 
-export default ResultCard;
+export default ResultCard
 
 const genre: {[key: number]: string} = {
   28: 'Action',
