@@ -8,6 +8,10 @@ const getPosterURL = (posterpath: string) => {
   return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
 };
 
+const getIconURL = (iconpath: string) => {
+  return `https://image.tmdb.org/t/p/original/${iconpath}`;
+};
+
 const Film = () => {
   // film_id from the url
   const { film_id } = useParams();
@@ -60,7 +64,7 @@ const Film = () => {
               <a href={`https://www.imdb.com/title/${filmData.imdb_id}`}>View on IMDB</a>
             </div>
             <div className='film__minor-info'>
-              <span className='helper__blue'>Released: </span>{filmData.release_date.split('-')[0]}
+              <span className='helper__blue'>Released: </span>
               {filmData.release_date.split('-')[0]}
             </div>
             <div className="film__minor-info"><span className="helper__blue">Runtime: </span>{filmData.runtime} mins</div>
@@ -68,7 +72,7 @@ const Film = () => {
             <div className="film__providers">
             {watchProviders.flatrate.map((provider: any) => (
               <div key={provider.provder_id}>
-                <img src={provider.logo_path} alt={provider.provider_name + " logo"} />
+                <img src={getIconURL(provider.logo_path)} alt={provider.provider_name + " logo"} />
               </div>
             ))}
             </div>
