@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import apiKey from '../apiKey';
+import '../components/SearchResult.css'
 import ResultCard from './ResultCard';
 
 const SearchResult = () => {

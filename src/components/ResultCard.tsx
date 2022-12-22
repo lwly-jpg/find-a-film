@@ -1,4 +1,5 @@
 import star from '../images/star.png';
+import '../components/ResultCard.css'
 import { Link } from 'react-router-dom'; 
 
 const getPosterURL = (posterpath: string) => {
