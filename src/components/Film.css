@@ -86,3 +86,26 @@ film
   .film__providers img {
     width: 40px;
   }
+
+  .back__button {
+    color: var(--white);
+    background-color: var(--blue);
+    border-color: var(--blue);
+    transition: 0.5s;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid;
+  }
+
+  
+  .back__button:hover {
+    background-color: var(--blue-light);
+    border-color: var(--blue-light);
+  }
+  
+  .back__button:active {
+    background-color: var(--blue-light);
+    scale: 1.05;
+  }

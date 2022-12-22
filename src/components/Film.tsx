@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import apiKey from '../apiKey';
 import star from '../images/star.png';
 import './Film.css';
@@ -19,6 +19,7 @@ const Film = () => {
   const { film_id } = useParams();
   const [filmData, setFilmData] = useState<any>();
   const [watchProviders, setWatchProviders] = useState<any>();
+  const navigate = useNavigate();
 
   // GET filmData
   useEffect(() => {
@@ -80,6 +81,7 @@ const Film = () => {
         <div className='film__description'>
           {filmData.overview}
         </div>
+        <button onClick={() => navigate(-1)} className='back__button'>Back</button>
       </div>
       : ""}
 
