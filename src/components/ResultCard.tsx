@@ -5,7 +5,7 @@ const getPosterURL = (posterpath: string) => {
 };
 
 const ResultCard = (result: any) => {
-  const genreList = result.genre_ids.map((item) => genre[item]).join(', ');
+  const genreList = result.genre_ids.map((item: number) => genre[item]).join(', ');
 
   return (
     <div className='results__container'>
@@ -41,7 +41,7 @@ const ResultCard = (result: any) => {
 
 export default ResultCard;
 
-const genre = {
+const genre: {[key: number]: string} = {
   28: 'Action',
   12: 'Adventure',
   16: 'Animation',
