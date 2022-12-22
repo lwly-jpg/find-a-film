@@ -43,7 +43,7 @@ const Film = () => {
         <div>{filmData.overview}</div>
         <div>{filmData.vote_average} / 10</div>
         <a href={`https://www.imdb.com/title/${filmData.imdb_id}`}>View on IMDB</a>
-        <div>Released: {filmData.release_date}</div>
+        <div>Released: {filmData.release_date.split('-')[0]}</div>
         <div>Runtime: {filmData.runtime} mins</div>
         <h3>Watch on:</h3>
         {watchProviders.flatrate.map((provider: any) => (
