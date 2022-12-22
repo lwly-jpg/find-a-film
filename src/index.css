@@ -149,6 +149,13 @@ Searchbar
   scale: 1.05;
 }
 
+.fake__button {
+  color: var(--white);
+  background-color: var(--blue);
+  border-color: var(--blue);
+  padding: 10px;
+}
+
 /***************************
 Results
 ***************************/

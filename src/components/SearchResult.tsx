@@ -8,6 +8,7 @@ const SearchResult = () => {
   const [userInput, setUserInput] = useState('');
   const [msg, setMsg] = useState('');
   const [isSorted, setIsSorted] = useState(false);
+  const [isSortedRating, setIsSortedRating] = useState(false);
   const [prevResults, setPrevResults] = useState<any>();
 
   const onSubmit = async (e: any) => {
@@ -38,7 +39,6 @@ const SearchResult = () => {
 
   };
 
-
   const sortByReleaseYear = () => {
     if (isSorted === false) {
       setPrevResults(results)
@@ -57,7 +57,26 @@ const SearchResult = () => {
       setIsSorted(false);
       setResults(prevResults);
     }
+  }
 
+  const sortByRating = () => {
+    if (isSortedRating === false) {
+      setPrevResults(results)
+      const sortedResultsRating = [...results].sort(function(o1: any, o2: any){
+        if (o1.vote_average > o2.vote_average) {
+          return -1;
+        } else if(o1.vote_average < o2.vote_average) {
+          return  1;
+        } else {
+          return  0;
+        }
+      })
+      setResults(sortedResultsRating);
+      setIsSortedRating(true);
+    } else {
+      setIsSortedRating(false);
+      setResults(prevResults);
+    }
   }
 
   return (
@@ -76,11 +95,14 @@ const SearchResult = () => {
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
         { results.length > 0 && <div className='sort__options'>
-          Sort by: 
-          <button onClick={sortByReleaseYear}>
+          <button className='fake__button'>Sort by :</button>
+          <button className='searchbar__submit' onClick={sortByReleaseYear}>
             { isSorted ? "Relevance" :  "Release year"}
           </button>
-        </div>}
+          <button className='searchbar__submit' onClick={sortByRating}>
+            { isSortedRating ? "Relevance" :  "Rating"}
+          </button>
+        </div> }
         {results.filter((item: any) => {
           if (item.poster_path !== null && item.release_date < date ) {
             return item
