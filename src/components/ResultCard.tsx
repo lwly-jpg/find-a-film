@@ -1,4 +1,5 @@
 import star from '../images/star.png';
+import { Link } from 'react-router-dom'; 
 
 const getPosterURL = (posterpath: string) => {
   return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
@@ -21,11 +22,8 @@ const ResultCard = (result: any) => {
               <img className='rating' src={star} alt='' />
               <div className='score'>{result.vote_average} / 10</div>
             </div>
-            <div className='result__header--imdb'>
-              <a href='https://www.imdb.com/'>View on IMDB</a>
-            </div>
           </div>
-          <h1 className='result__title'>{result.title}</h1>
+          <Link className='result__title' to={'/film/' + result.id}>{result.title}</Link>
           <div className='result__minor-info'>
             Released: {result.release_date.split('-')[0]}
           </div>

@@ -161,6 +161,9 @@ Results
 }
 
 .result__title {
+  font-size: 30px;
+  color: var(--black);
+  font-weight: bold;
   margin: 10px 0;
 }
 
