@@ -31,7 +31,7 @@ const SearchResult = () => {
         <input type='submit' value='Search' className='searchbar__submit' />
       </form>
       {results.map((result: any) => (
-         <ResultCard {...result} /> 
+        <ResultCard {...result} />
       ))}
     </div>
   );
