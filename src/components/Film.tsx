@@ -97,6 +97,9 @@ const Film = () => {
           <button onClick={() => navigate(-1)} className='back__button'>
             Back
           </button>
+          <div className='data__source'>
+            Watch provider data provided by <a href="https://www.justwatch.com/">JustWatch</a>.
+          </div>
         </div>
       ) : (
         ''
