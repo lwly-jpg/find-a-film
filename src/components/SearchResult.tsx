@@ -36,6 +36,21 @@ const SearchResult = () => {
       });
   };
 
+
+  const sortByReleaseYear = () => {
+    const sortedResults = [...results].sort(function(o1: any, o2: any){
+      if (o1.release_date > o2.release_date) {
+        return -1;
+      } else if(o1.release_date < o2.release_date) {
+        return  1;
+      } else {
+        return  0;
+      }
+    })
+
+    setResults(sortedResults);
+  }
+
   return (
     <div className='search'>
       <form action='#' className='searchbar' onSubmit={onSubmit}>
@@ -51,19 +66,13 @@ const SearchResult = () => {
       </form>
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
+        { results.length > 0 && <div className='sort__options'>
+          Sort by: <button onClick={sortByReleaseYear}>Release year</button>
+        </div>}
         {results.filter((item: any) => {
           if (item.poster_path !== null && item.release_date < date ) {
             return item
           } return null
-        })
-        .sort(function(o1: any,o2: any){
-          if (o1.release_date > o2.release_date) {
-            return -1;
-          } else if(o1.release_date < o2.release_date) {
-            return  1;
-          } else {
-            return  0;
-          }
         })
         .map((result: any) => (
           <ResultCard key={result.id} {...result} />
