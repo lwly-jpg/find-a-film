@@ -25,6 +25,7 @@ const ResultCard = (result: any) => {
             </div>
           </div>
           <Link className='result__title' to={'/film/' + result.id}>{result.title}</Link>
+          <div className='result__header--genre'>{genreList}</div>
           <div className='result__minor-info'>
             <span className="helper__blue">Released:</span> {result.release_date.split('-')[0]}
           </div>
