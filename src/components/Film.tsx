@@ -35,10 +35,16 @@ const Film = () => {
       {filmData && watchProviders ? 
       <div>
         <h1>{filmData.title} </h1>
+        <div>
+          {filmData.genres.map((genre: any) => (
+            <div key={genre.id}>{genre.name}</div>
+          ))}
+        </div>
         <div>{filmData.overview}</div>
+        <div>{filmData.vote_average} / 10</div>
+        <a href={`https://www.imdb.com/title/${filmData.imdb_id}`}>View on IMDB</a>
         <div>Released: {filmData.release_date}</div>
         <div>Runtime: {filmData.runtime} mins</div>
-        <div>{filmData.vote_average} / 10</div>
         <h3>Watch on:</h3>
         {watchProviders.flatrate.map((provider: any) => (
         <div key={provider.provder_id}>
