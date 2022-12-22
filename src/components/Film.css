@@ -9,16 +9,16 @@ film
     align-items: center;
     gap: 50px;
     margin: 50px 0;
-  }
-  
-  .film {
+}
+
+.film {
     display: grid;
     grid-template-columns: minmax(50px, 1fr);
     grid-auto-flow: column;
     gap: 20px;
-  }
-  
-  .film__title {
+}
+
+.film__title {
     margin: 10px 0;
   }
   
@@ -74,4 +74,15 @@ film
     font-style: italic;
   }
   
-  
+  .film__description {
+    max-width: 500px;
+  }
+
+  .film__providers {
+    display: flex;
+    gap: 15px;
+  }
+
+  .film__providers img {
+    width: 40px;
+  }
