@@ -60,75 +60,78 @@ const Film = () => {
   }, [film_id]);
 
   return (
-
     <>
-      {filmData ? (
-        <div className='film__container'>
-          <h1 className='film__title'>{filmData.title}</h1>
-          <div className='film'>
-            <img
-              className='film__image'
-              src={getPosterURL(filmData.poster_path)}
-              alt=''
-            />
-            <div className='film__info'>
-              <div className='film__header--genre'>
-                {filmData.genres.map((genre: any) => genre.name).join(', ')}
-              </div>
-              <div className='film__header--rating'>
-                <img className='film__rating' src={star} alt='star-icon' />
-                <div className='film__score'>
-                  {filmData.vote_average.toFixed(1)} / 10
-                </div>
-              </div>
-              <div className='film__header--imdb'>
-                <a href={`https://www.imdb.com/title/${filmData.imdb_id}`}>
-                  View on IMDB
-                </a>
-              </div>
-              <div className='film__minor-info'>
-                <span className='helper__blue'>Released: </span>
-                {filmData.release_date.split('-')[0]}
-              </div>
-              <div className='film__minor-info'>
-                <span className='helper__blue'>Runtime: </span>
-                {convertRunTime(filmData.runtime)}
-              </div>
-              <div className='film__minor-info'>
-                <span className='helper__blue'>Watch on: </span>
-              </div>
+    {filmData ? (
 
-              {watchProviders ? 
-
-                  <div className='film__providers'>
-                  {watchProviders.flatrate.map((provider: any) => (
-                    <img
-                      key={provider.provider_id}
-                      src={getIconURL(provider.logo_path)}
-                      alt={provider.provider_name + ' logo'}
-                    />
-                  ))}
-                  </div>
-              
-              : "Not currently available to stream."}
-
+      <div className='film__container'>
+      <h1 className='film__title'>{filmData.title}</h1>
+      <div className='film'>
+        <img
+          className='film__image'
+          src={getPosterURL(filmData.poster_path)}
+          alt=''
+        />
+        <div className='film__info'>
+          <div className='film__header--genre'>
+            {filmData.genres.map((genre: any) => genre.name).join(', ')}
+          </div>
+          <div className='film__header--rating'>
+            <img className='film__rating' src={star} alt='star-icon' />
+            <div className='film__score'>
+              {filmData.vote_average.toFixed(1)} / 10
             </div>
+          </div>
+          <div className='film__header--imdb'>
+            <a href={`https://www.imdb.com/title/${filmData.imdb_id}`}>
+              View on IMDB
+            </a>
+          </div>
+          <div className='film__minor-info'>
+            <span className='helper__blue'>Released: </span>
+            {filmData.release_date.split('-')[0]}
+          </div>
+          <div className='film__minor-info'>
+            <span className='helper__blue'>Runtime: </span>
+            {convertRunTime(filmData.runtime)}
+          </div>
+          <div className='film__minor-info'>
+            <span className='helper__blue'>Watch on: </span>
+          </div>
+
+          {watchProviders ? 
+
+          <div className='film__providers'>
+          {watchProviders.flatrate.map((provider: any) => (
+            <img
+              key={provider.provider_id}
+              src={getIconURL(provider.logo_path)}
+              alt={provider.provider_name + ' logo'}
+            />
+          ))}
+          </div>
+
+          : "Not currently available to stream."}
+
+          </div>
           <div className='film__description'>{filmData.overview}</div>
           </div>
           <button onClick={() => navigate(-1)} className='back__button'>
-            Back
+          Back
           </button>
           <div className='data__source'>
-            Watch provider data provided by{' '}
-            <a href='https://www.justwatch.com/'>JustWatch</a>.
+          Watch provider data provided by{' '}
+          <a href='https://www.justwatch.com/'>JustWatch</a>.
           </div>
-        </>
-      ) : (
-        ''
-      )}
+        </div>
+    ) : 
+    
+    ( "" )}
+    
     </>
   );
+
 };
+
 
 const convertRunTime = (totalMinutes: number) => {
   const hours = Math.floor(totalMinutes / 60);
