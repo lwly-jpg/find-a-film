@@ -1,4 +1,4 @@
-import typeLogo from '../images/typeface-based-logo.png';
+import typeLogo from '../images/typeface-based-logo.svg';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
