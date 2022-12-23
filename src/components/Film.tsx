@@ -23,29 +23,46 @@ const Film = () => {
 
   // GET filmData
   useEffect(() => {
+    let cancelled = false;
     fetch(
       `https://api.themoviedb.org/3/movie/${film_id}?api_key=${apiKey}&language=en-GB}`
     )
       .then((response) => response.json())
       .then(async (data) => {
-        setFilmData(data);
+        if (!cancelled) {
+          setFilmData(data);
+        }
       });
+
+      return () => {
+        cancelled = true;
+      }
+
   }, [film_id]);
 
   // GET watchProviders data
   useEffect(() => {
+    let cancelled = false;
     fetch(
       `https://api.themoviedb.org/3/movie/${film_id}/watch/providers?api_key=${apiKey}&language=en-GB`
     )
       .then((response) => response.json())
       .then(async (data) => {
-        setWatchProviders(data.results.GB); // .GB === country
+        if (!cancelled) {
+          setWatchProviders(data.results.GB); // .GB === country
+        }
       });
+
+      return () => {
+        cancelled = true;
+      }
+      
   }, [film_id]);
 
   return (
+
     <>
-      {filmData && watchProviders ? (
+      {filmData ? (
         <div className='film__container'>
           <h1 className='film__title'>{filmData.title}</h1>
           <div className='film'>
@@ -80,15 +97,21 @@ const Film = () => {
               <div className='film__minor-info'>
                 <span className='helper__blue'>Watch on: </span>
               </div>
-              <div className='film__providers'>
-                {watchProviders.flatrate.map((provider: any) => (
-                  <img
-                    key={provider.provider_id}
-                    src={getIconURL(provider.logo_path)}
-                    alt={provider.provider_name + ' logo'}
-                  />
-                ))}
-              </div>
+
+              {watchProviders ? 
+
+                  <div className='film__providers'>
+                  {watchProviders.flatrate.map((provider: any) => (
+                    <img
+                      key={provider.provider_id}
+                      src={getIconURL(provider.logo_path)}
+                      alt={provider.provider_name + ' logo'}
+                    />
+                  ))}
+                  </div>
+              
+              : "Not currently available to stream."}
+
             </div>
           <div className='film__description'>{filmData.overview}</div>
           </div>
@@ -99,7 +122,7 @@ const Film = () => {
             Watch provider data provided by{' '}
             <a href='https://www.justwatch.com/'>JustWatch</a>.
           </div>
-        </div>
+        </>
       ) : (
         ''
       )}
