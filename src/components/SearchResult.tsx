@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import apiKey from '../apiKey';
 import ResultCard from './ResultCard';
-// import format from 'date-fns';
 
 const SearchResult = () => {
   const [results, setResults] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [msg, setMsg] = useState('');
-  const [isSorted, setIsSorted] = useState(false);
+  const [isSortedYear, setIsSortedYear] = useState(false);
   const [isSortedRating, setIsSortedRating] = useState(false);
   const [prevResults, setPrevResults] = useState<any>();
 
@@ -18,6 +17,8 @@ const SearchResult = () => {
     )
       .then((response) => response.json())
       .then((data) => {
+        setIsSortedYear(false); // search results initially un-sorted by Year
+        setIsSortedRating(false); // search results initially un-sorted by Rating
         if (data.results === undefined) {
           setMsg('Must input a search');
           setResults([]);
@@ -40,7 +41,7 @@ const SearchResult = () => {
   };
 
   const sortByReleaseYear = () => {
-    if (isSorted === false) {
+    if (isSortedYear === false) {
       setPrevResults(results)
       const sortedResults = [...results].sort(function(o1: any, o2: any){
         if (o1.release_date > o2.release_date) {
@@ -52,11 +53,12 @@ const SearchResult = () => {
         }
       })
       setResults(sortedResults);
-      setIsSorted(true);
+      setIsSortedYear(true);
+      setIsSortedRating(false);
     } else {
-      setIsSorted(false);
+      setIsSortedYear(false);
       setResults(prevResults);
-    }
+    } 
   }
 
   const sortByRating = () => {
@@ -73,6 +75,7 @@ const SearchResult = () => {
       })
       setResults(sortedResultsRating);
       setIsSortedRating(true);
+      setIsSortedYear(false);
     } else {
       setIsSortedRating(false);
       setResults(prevResults);
@@ -97,7 +100,7 @@ const SearchResult = () => {
         { results.length > 0 && <div className='sort__options'>
           <button className='fake__button'>Sort by :</button>
           <button className='searchbar__submit' onClick={sortByReleaseYear}>
-            { isSorted ? "Relevance" :  "Release year"}
+            { isSortedYear ? "Relevance" :  "Release year"}
           </button>
           <button className='searchbar__submit' onClick={sortByRating}>
             { isSortedRating ? "Relevance" :  "Rating"}
