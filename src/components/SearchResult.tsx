@@ -98,11 +98,11 @@ const SearchResult = () => {
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
         { results.length > 0 && <div className='sort__options'>
-          <button className='fake__button'>Sort by :</button>
-          <button className='searchbar__submit' onClick={sortByReleaseYear}>
+          <label><strong>Sort by:</strong></label>
+          <button className='sort__button' onClick={sortByReleaseYear}>
             { isSortedYear ? "Relevance" :  "Release year"}
           </button>
-          <button className='searchbar__submit' onClick={sortByRating}>
+          <button className='sort__button' onClick={sortByRating}>
             { isSortedRating ? "Relevance" :  "Rating"}
           </button>
         </div> }
