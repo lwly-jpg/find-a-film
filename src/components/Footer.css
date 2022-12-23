@@ -1,0 +1,16 @@
+/***************************
+Footer
+***************************/
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7px;
+  padding: 20px 0;
+}
+
+.footer__logo {
+  display: flex;
+  height: 15px;
+}

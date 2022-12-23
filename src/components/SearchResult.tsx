@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import apiKey from '../apiKey';
+import '../components/SearchResult.css'
 import ResultCard from './ResultCard';
 
 const SearchResult = () => {
@@ -102,8 +103,8 @@ const SearchResult = () => {
         />
         <input type='submit' value='Search' className='searchbar__submit' />
       </form>
+      <h3 className='results__message'>{msg}</h3>
       <div className='results__container'>
-        <h3 className='results__message'>{msg}</h3>
         { results.length > 0 && <div className='sort__options'>
           <label><strong>Sort by:</strong></label>
           <button className='sort__button' onClick={sortByReleaseYear}>

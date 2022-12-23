@@ -1,111 +1,138 @@
-
 /***************************
 film
 ***************************/
 
 .film__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  margin: 50px 5px;
+  max-width: 500px;
+  align-self: center;
 }
 
 .film {
-    display: grid;
-    grid-template-columns: minmax(50px, 1fr);
-    grid-auto-flow: column;
-    gap: 20px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  padding: 0 5px;
 }
 
 .film__title {
-    margin: 10px 0;
-  }
-  
-  .film__image {
-    height: 100%;
-    height: 350px;
-  }
-  
-  .film__info {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px 0;
-  }
-  
-  .film__header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.film__image {
+  display: block;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.film__info {
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.film__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.film__header--rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.film__header--imdb a:link,
+.film__header--imdb a:visited {
+  color: var(--blue-light);
+}
+
+.film__rating {
+  display: block;
+  max-width: 100%;
+  width: 30px;
+}
+
+.film__score {
+  color: var(--grey);
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+.film__minor-info {
+  font-weight: bold;
+}
+
+.film__header--genre {
+  font-style: italic;
+}
+
+.film__description {
+  max-width: 500px;
+}
+
+.film__providers {
+  display: flex;
+  gap: 15px;
+}
+
+.film__providers img {
+  width: 40px;
+}
+
+.back__button {
+  color: var(--white);
+  background-color: var(--blue);
+  border-color: var(--blue);
+  transition: 0.5s;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid;
+}
+
+.back__button:hover {
+  background-color: var(--blue-light);
+  border-color: var(--blue-light);
+}
+
+.back__button:active {
+  background-color: var(--blue-light);
+  scale: 1.05;
+}
+
+.data__source {
+  text-align: center;
+}
+
+@media only screen and (min-width: 425px) {
+}
+
+@media only screen and (min-width: 425px) {
+  .film {
+    display: grid;
+    grid-template-columns: minmax(50px, 1fr) minmax(50px, 1fr);
+    grid-template-rows: auto auto;
     gap: 20px;
   }
-  
-  .film__header--rating {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
+
+  .film__image {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
   }
-  
-  .film__header--imdb a:link,
-  .film__header--imdb a:visited {
-    color: var(--blue-light);
-  }
-  
-  .rating {
-    display: block;
-    max-width: 100%;
-    width: 30px;
-  }
-  
-  .score {
-    color: var(--grey);
-    font-size: 1.2rem;
-    line-height: 1.7;
-  }
-  
-  .film__minor-info {
-    font-weight: bold;
-  }
-  
-  .film__header--genre {
-    font-style: italic;
-  }
-  
+
   .film__description {
-    max-width: 500px;
+    grid-column: 1 / -1;
   }
-
-  .film__providers {
-    display: flex;
-    gap: 15px;
-  }
-
-  .film__providers img {
-    width: 40px;
-  }
-
-  .back__button {
-    color: var(--white);
-    background-color: var(--blue);
-    border-color: var(--blue);
-    transition: 0.5s;
-    padding: 10px;
-    font-family: inherit;
-    font-size: 1rem;
-    border-radius: var(--border-radius);
-    border: 1px solid;
-  }
-
-  
-  .back__button:hover {
-    background-color: var(--blue-light);
-    border-color: var(--blue-light);
-  }
-  
-  .back__button:active {
-    background-color: var(--blue-light);
-    scale: 1.05;
-  }
+}

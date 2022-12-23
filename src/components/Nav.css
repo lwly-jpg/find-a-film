@@ -1,0 +1,15 @@
+/***************************
+Navbar
+***************************/
+
+.nav {
+  height: 94px;
+  width: 100%;
+  box-shadow: 0 3px 7px 0 #0000001a;
+}
+
+.nav__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

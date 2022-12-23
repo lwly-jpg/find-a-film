@@ -1,0 +1,17 @@
+/***************************
+Header
+***************************/
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.headline {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.discover {
+  color: var(--blue);
+}

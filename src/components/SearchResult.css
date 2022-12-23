@@ -1,0 +1,43 @@
+/***************************
+Searchbar
+***************************/
+
+.search {
+  flex-grow: 1;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+}
+
+.searchbar__input,
+.searchbar__submit {
+  padding: 10px;
+}
+
+.searchbar__input {
+  border-color: var(--outline-grey);
+  margin-right: 8px;
+}
+
+.searchbar__input:focus-visible {
+  border-color: var(--blue);
+}
+
+.searchbar__submit {
+  color: var(--white);
+  background-color: var(--blue);
+  border-color: var(--blue);
+  transition: 0.5s;
+}
+
+.searchbar__submit:hover {
+  background-color: var(--blue-light);
+  border-color: var(--blue-light);
+}
+
+.searchbar__submit:active {
+  background-color: var(--blue-light);
+  scale: 1.05;
+}
