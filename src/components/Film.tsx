@@ -44,7 +44,7 @@ const Film = () => {
   }, [film_id]);
 
   return (
-    <div>
+    <>
       {filmData && watchProviders ? (
         <div className='film__container'>
           <h1 className='film__title'>{filmData.title}</h1>
@@ -56,9 +56,7 @@ const Film = () => {
             />
             <div className='film__info'>
               <div className='film__header--genre'>
-                {filmData.genres.map((genre: any) => (
-                  <div key={genre.id}>{genre.name}</div>
-                ))}
+                {filmData.genres.map((genre: any) => genre.name).join(', ')}
               </div>
               <div className='film__header--rating'>
                 <img className='film__rating' src={star} alt='star-icon' />
@@ -92,19 +90,20 @@ const Film = () => {
                 ))}
               </div>
             </div>
-          </div>
           <div className='film__description'>{filmData.overview}</div>
+          </div>
           <button onClick={() => navigate(-1)} className='back__button'>
             Back
           </button>
           <div className='data__source'>
-            Watch provider data provided by <a href="https://www.justwatch.com/">JustWatch</a>.
+            Watch provider data provided by{' '}
+            <a href='https://www.justwatch.com/'>JustWatch</a>.
           </div>
         </div>
       ) : (
         ''
       )}
-    </div>
+    </>
   );
 };
 

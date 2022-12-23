@@ -7,23 +7,27 @@ film
   flex-direction: column;
   align-items: center;
   gap: 50px;
-  margin: 50px 0;
+  margin: 50px 5px;
+  max-width: 500px;
+  align-self: center;
 }
 
 .film {
   display: grid;
-  grid-template-columns: minmax(50px, 1fr);
-  grid-auto-flow: column;
-  gap: 20px;
+  width: 100%;
+  grid-template-columns: 1fr;
+  padding: 0 5px;
 }
 
 .film__title {
   margin: 10px 0;
+  text-align: center;
 }
 
 .film__image {
-  height: 100%;
-  height: 350px;
+  display: block;
+  width: 90vw;
+  margin: 0 auto;
 }
 
 .film__info {
@@ -106,4 +110,29 @@ film
 .back__button:active {
   background-color: var(--blue-light);
   scale: 1.05;
+}
+
+.data__source {
+  text-align: center;
+}
+
+@media only screen and (min-width: 425px) {
+}
+
+@media only screen and (min-width: 425px) {
+  .film {
+    display: grid;
+    grid-template-columns: minmax(50px, 1fr) minmax(50px, 1fr);
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+
+  .film__image {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .film__description {
+    grid-column: 1 / -1;
+  }
 }
