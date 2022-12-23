@@ -12,6 +12,14 @@ const SearchResult = () => {
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
+
+    // API requires at least one character
+    if (!userInput) {
+      setMsg('Must input a search');
+      setResults([]);
+      return;
+    }
+
     await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${userInput}&api_key=${apiKey}`
     )
@@ -19,10 +27,9 @@ const SearchResult = () => {
       .then((data) => {
         setIsSortedYear(false); // search results initially un-sorted by Year
         setIsSortedRating(false); // search results initially un-sorted by Rating
-        if (data.results === undefined) {
-          setMsg('Must input a search');
-          setResults([]);
-        }
+
+        // no results returns nothing
+        // need empty array to avoid errors
         const newResults = data.results || [];
         if (data.results.length === 0) {
           setMsg('Sorry no results');
