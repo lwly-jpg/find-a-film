@@ -41,3 +41,27 @@ Searchbar
   background-color: var(--blue-light);
   scale: 1.05;
 }
+
+.sort__button {
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid;
+  padding: 10px;
+  margin: 5px;
+  color: var(--white);
+  background-color: var(--blue);
+  border-color: var(--blue);
+  transition: 0.5s;
+
+}
+
+.sort__button:hover {
+  background-color: var(--blue-light);
+  border-color: var(--blue-light);
+}
+
+.sort__button:active {
+  background-color: var(--blue-light);
+  scale: 1.05;
+}
