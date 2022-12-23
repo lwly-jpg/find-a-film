@@ -21,8 +21,8 @@ const ResultCard = (result: any) => {
         <div className='result__info'>
           <div className='result__header'>
             <div className='result__header--rating'>
-              <img className='rating' src={star} alt='' />
-              <div className='score'>{result.vote_average} / 10</div>
+              <img className='result__rating' src={star} alt='' />
+              <div className='result__score'>{result.vote_average} / 10</div>
             </div>
           </div>
           <Link className='result__title' to={'/film/' + result.id}>{result.title}</Link>

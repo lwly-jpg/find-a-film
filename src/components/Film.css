@@ -53,13 +53,13 @@ film
   color: var(--blue-light);
 }
 
-.rating {
+.film__rating {
   display: block;
   max-width: 100%;
   width: 30px;
 }
 
-.score {
+.film__score {
   color: var(--grey);
   font-size: 1.2rem;
   line-height: 1.7;

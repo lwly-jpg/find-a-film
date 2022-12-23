@@ -56,13 +56,13 @@ Results
   color: var(--blue-light);
 }
 
-.rating {
+.result__rating {
   display: block;
   max-width: 100%;
   width: 30px;
 }
 
-.score {
+.result__score {
   color: var(--grey);
   font-size: 1.2rem;
   line-height: 1.7;

@@ -61,8 +61,8 @@ const Film = () => {
                 ))}
               </div>
               <div className='film__header--rating'>
-                <img className='rating' src={star} alt='star-icon' />
-                <div className='score'>
+                <img className='film__rating' src={star} alt='star-icon' />
+                <div className='film__score'>
                   {filmData.vote_average.toFixed(1)} / 10
                 </div>
               </div>
