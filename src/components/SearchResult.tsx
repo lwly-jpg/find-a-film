@@ -104,7 +104,6 @@ const SearchResult = () => {
         <input type='submit' value='Search' className='searchbar__submit' />
       </form>
       <h3 className='results__message'>{msg}</h3>
-      <div className='results__container'>
         { results.length > 0 && <div className='sort__options'>
           <label><strong>Sort by:</strong></label>
           <button className='sort__button' onClick={sortByReleaseYear}>
@@ -114,6 +113,7 @@ const SearchResult = () => {
             { isSortedRating ? "Relevance" :  "Rating"}
           </button>
         </div> }
+      <div className='results__container'>
         {results.filter((item: any) => {
           if (item.poster_path !== null && item.release_date < date ) {
             return item

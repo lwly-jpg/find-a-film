@@ -13,11 +13,13 @@ const ResultCard = (result: any) => {
 
   return (
     <div className='result'>
-      <img
-        className='result__image'
-        src={getPosterURL(result.poster_path)}
-        alt=''
-      />
+      <Link to={'/film/' + result.id}>
+        <img
+          className='result__image'
+          src={getPosterURL(result.poster_path)}
+          alt=''
+        />
+      </Link>
       <div className='result__info'>
         <div className='result__header'>
           <div className='result__header--rating'>
