@@ -4,9 +4,11 @@ Results
 
 .results__container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
+  max-width: 1225px;
 }
 
 .results__message {
