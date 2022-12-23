@@ -28,6 +28,8 @@ const Film = () => {
     )
       .then((response) => response.json())
       .then(async (data) => {
+        console.log('FILM DATA BELOW')
+        console.log(data)
         setFilmData(data);
       });
   }, [film_id]);
@@ -39,13 +41,15 @@ const Film = () => {
     )
       .then((response) => response.json())
       .then(async (data) => {
+        console.log('PROVIDER DATA BELOW')
+        console.log(data)
         setWatchProviders(data.results.GB); // .GB === country
       });
   }, [film_id]);
 
   return (
     <div>
-      {filmData && watchProviders ? (
+      {filmData ? (
         <div className='film__container'>
           <h1 className='film__title'>{filmData.title}</h1>
           <div className='film'>
@@ -82,15 +86,21 @@ const Film = () => {
               <div className='film__minor-info'>
                 <span className='helper__blue'>Watch on: </span>
               </div>
-              <div className='film__providers'>
-                {watchProviders.flatrate.map((provider: any) => (
-                  <img
-                    key={provider.provider_id}
-                    src={getIconURL(provider.logo_path)}
-                    alt={provider.provider_name + ' logo'}
-                  />
-                ))}
-              </div>
+
+              {watchProviders ? 
+
+                  <div className='film__providers'>
+                  {watchProviders.flatrate.map((provider: any) => (
+                    <img
+                      key={provider.provider_id}
+                      src={getIconURL(provider.logo_path)}
+                      alt={provider.provider_name + ' logo'}
+                    />
+                  ))}
+                  </div>
+              
+              : "Not currently available to stream."}
+
             </div>
           </div>
           <div className='film__description'>{filmData.overview}</div>
