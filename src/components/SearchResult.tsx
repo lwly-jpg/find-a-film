@@ -6,20 +6,28 @@ const SearchResult = () => {
   const [results, setResults] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [msg, setMsg] = useState('');
+  const [isSortedYear, setIsSortedYear] = useState(false);
+  const [isSortedRating, setIsSortedRating] = useState(false);
+  const [prevResults, setPrevResults] = useState<any>();
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
+
     // API requires at least one character
     if (!userInput) {
       setMsg('Must input a search');
       setResults([]);
       return;
     }
+
     await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${userInput}&api_key=${apiKey}`
     )
       .then((response) => response.json())
       .then((data) => {
+        setIsSortedYear(false); // search results initially un-sorted by Year
+        setIsSortedRating(false); // search results initially un-sorted by Rating
+
         // no results returns nothing
         // need empty array to avoid errors
         const newResults = data.results || [];
@@ -36,7 +44,50 @@ const SearchResult = () => {
       .catch((err) => {
         console.log(err);
       });
+
   };
+
+  const sortByReleaseYear = () => {
+    if (isSortedYear === false) {
+      setPrevResults(results)
+      const sortedResults = [...results].sort(function(o1: any, o2: any){
+        if (o1.release_date > o2.release_date) {
+          return -1;
+        } else if(o1.release_date < o2.release_date) {
+          return  1;
+        } else {
+          return  0;
+        }
+      })
+      setResults(sortedResults);
+      setIsSortedYear(true);
+      setIsSortedRating(false);
+    } else {
+      setIsSortedYear(false);
+      setResults(prevResults);
+    } 
+  }
+
+  const sortByRating = () => {
+    if (isSortedRating === false) {
+      setPrevResults(results)
+      const sortedResultsRating = [...results].sort(function(o1: any, o2: any){
+        if (o1.vote_average > o2.vote_average) {
+          return -1;
+        } else if(o1.vote_average < o2.vote_average) {
+          return  1;
+        } else {
+          return  0;
+        }
+      })
+      setResults(sortedResultsRating);
+      setIsSortedRating(true);
+      setIsSortedYear(false);
+    } else {
+      setIsSortedRating(false);
+      setResults(prevResults);
+    }
+  }
 
   return (
     <div className='search'>
@@ -53,7 +104,21 @@ const SearchResult = () => {
       </form>
       <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
-        {results.map((result: any) => (
+        { results.length > 0 && <div className='sort__options'>
+          <label><strong>Sort by:</strong></label>
+          <button className='sort__button' onClick={sortByReleaseYear}>
+            { isSortedYear ? "Relevance" :  "Release year"}
+          </button>
+          <button className='sort__button' onClick={sortByRating}>
+            { isSortedRating ? "Relevance" :  "Rating"}
+          </button>
+        </div> }
+        {results.filter((item: any) => {
+          if (item.poster_path !== null && item.release_date < date ) {
+            return item
+          } return null
+        })
+        .map((result: any) => (
           <ResultCard key={result.id} {...result} />
         ))}
       </div>
@@ -62,3 +127,6 @@ const SearchResult = () => {
 };
 
 export default SearchResult;
+
+const { format } = require('date-fns');
+let date = format(new Date(), 'yyyy.MM.dd');
