@@ -11,6 +11,7 @@ Results
 
 .results__message {
   text-align: center;
+  margin: 0;
 }
 
 .result {
