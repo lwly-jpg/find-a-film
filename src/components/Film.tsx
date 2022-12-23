@@ -28,8 +28,6 @@ const Film = () => {
     )
       .then((response) => response.json())
       .then(async (data) => {
-        console.log('FILM DATA BELOW')
-        console.log(data)
         setFilmData(data);
       });
   }, [film_id]);
@@ -41,8 +39,6 @@ const Film = () => {
     )
       .then((response) => response.json())
       .then(async (data) => {
-        console.log('PROVIDER DATA BELOW')
-        console.log(data)
         setWatchProviders(data.results.GB); // .GB === country
       });
   }, [film_id]);
