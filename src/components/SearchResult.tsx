@@ -49,8 +49,8 @@ const SearchResult = () => {
         />
         <input type='submit' value='Search' className='searchbar__submit' />
       </form>
-      <div className='results__container'>
         <h3 className='results__message'>{msg}</h3>
+      <div className='results__container'>
       {results.map((result: any) => (
         <ResultCard key={result.id} {...result} />
       ))}
