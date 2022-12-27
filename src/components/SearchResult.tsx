@@ -10,12 +10,25 @@ const SearchResult = () => {
   const [isSortedYear, setIsSortedYear] = useState(false);
   const [isSortedRating, setIsSortedRating] = useState(false);
   const [prevResults, setPrevResults] = useState<any>();
+  const [discoverParams, setDiscoverParams] = useState(
+    {
+      genre: ""
+    }
+  )
 
-  const handleSubmit = () => {
+  const handleChange = (event: any) => {
+    const {genre} = event.target;
+    setDiscoverParams(prevDiscoverParams => {
+      return {
+        ...prevDiscoverParams,
+        [event.target.name]: event.target.value
+      }
+    })
   };
 
-  const handleChange = () => {
-
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    console.log(discoverParams)
   };
 
   const onSubmit = async (e: any) => {
@@ -101,6 +114,7 @@ const SearchResult = () => {
     <div className='search'>
       <form className='searchbar' onSubmit={handleSubmit}>
         <select id="genre" value="" onChange={handleChange} name="genre">
+          <option value="">-- Genre --</option>
           <option value={28}>Action</option>
           <option value={12}>Adventure</option>
           <option value={16}>Animation</option>
