@@ -146,6 +146,13 @@ const SearchResult = () => {
           <option value="">-- Rating --</option>
           <option value={9.0}>9+ stars</option>
           <option value={8.0}>8+ stars</option>
+          <option value={7.0}>7+ stars</option>
+          <option value={6.0}>6+ stars</option>
+          <option value={5.0}>5+ stars</option>
+          <option value={4.0}>4+ stars</option>
+          <option value={3.0}>3+ stars</option>
+          <option value={2.0}>2+ stars</option>
+          <option value={1.0}>1+ stars</option>
         </select>
         <button className='sort__button'>Discover films</button>
       </form>
