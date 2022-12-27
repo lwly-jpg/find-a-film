@@ -12,7 +12,8 @@ const SearchResult = () => {
   const [prevResults, setPrevResults] = useState<any>();
   const [discoverParams, setDiscoverParams] = useState(
     {
-      genre: ""
+      genre: "",
+      rating: ""
     }
   )
 
@@ -30,7 +31,7 @@ const SearchResult = () => {
     event.preventDefault();
     console.log(discoverParams)
     await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_watch_monetization_types=flatrate&with_genres=${discoverParams.genre}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}`
     ).then((response) => response.json())
       .then((data) => {
         setResults(data.results)
@@ -140,6 +141,11 @@ const SearchResult = () => {
           <option value={53}>Thriller</option>
           <option value={10752}>War</option>
           <option value={37}>Western</option>
+        </select>
+        <select id="rating" value={discoverParams.rating} onChange={handleChange} name="rating">
+          <option value="">-- Rating --</option>
+          <option value={9.0}>9+ stars</option>
+          <option value={8.0}>8+ stars</option>
         </select>
         <button className='searchbar__submit'>Discover films</button>
       </form>
