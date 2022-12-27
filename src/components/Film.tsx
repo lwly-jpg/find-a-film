@@ -98,7 +98,7 @@ const Film = () => {
             <span className='helper__blue'>Watch on: </span>
           </div>
 
-          {watchProviders ? 
+          {watchProviders.flatrate ? 
 
           <div className='film__providers'>
           {watchProviders.flatrate.map((provider: any) => (
