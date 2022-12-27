@@ -26,9 +26,15 @@ const SearchResult = () => {
     })
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     console.log(discoverParams)
+    await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_watch_monetization_types=flatrate&with_genres=${discoverParams.genre}`
+    ).then((response) => response.json())
+      .then((data) => {
+        setResults(data.results)
+      })
   };
 
   const onSubmit = async (e: any) => {
@@ -113,7 +119,7 @@ const SearchResult = () => {
   return (
     <div className='search'>
       <form className='searchbar' onSubmit={handleSubmit}>
-        <select id="genre" value="" onChange={handleChange} name="genre">
+        <select id="genre" value={discoverParams.genre} onChange={handleChange} name="genre">
           <option value="">-- Genre --</option>
           <option value={28}>Action</option>
           <option value={12}>Adventure</option>
