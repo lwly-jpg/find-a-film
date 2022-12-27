@@ -11,6 +11,13 @@ const SearchResult = () => {
   const [isSortedRating, setIsSortedRating] = useState(false);
   const [prevResults, setPrevResults] = useState<any>();
 
+  const handleSubmit = () => {
+  };
+
+  const handleChange = () => {
+
+  };
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -92,6 +99,16 @@ const SearchResult = () => {
 
   return (
     <div className='search'>
+      <form className='searchbar' onSubmit={handleSubmit}>
+        <select id="genre" value="" onChange={handleChange} name="genre">
+          <option value={28}>Action</option>
+          <option value={12}>Adventure</option>
+          <option value={16}>Animation</option>
+        </select>
+        <button className='searchbar__submit'>Discover films</button>
+      </form>
+
+
       <form action='#' className='searchbar' onSubmit={onSubmit}>
         <input
           type='text'
