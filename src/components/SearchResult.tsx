@@ -120,7 +120,7 @@ const SearchResult = () => {
   return (
     <div className='search'>
       <form className='searchbar' onSubmit={handleSubmit}>
-        <select id="genre" value={discoverParams.genre} onChange={handleChange} name="genre">
+        <select id="genre" value={discoverParams.genre} onChange={handleChange} name="genre" className="discover__dropdown">
           <option value="">-- Genre --</option>
           <option value={28}>Action</option>
           <option value={12}>Adventure</option>
@@ -142,12 +142,12 @@ const SearchResult = () => {
           <option value={10752}>War</option>
           <option value={37}>Western</option>
         </select>
-        <select id="rating" value={discoverParams.rating} onChange={handleChange} name="rating">
+        <select id="rating" value={discoverParams.rating} onChange={handleChange} name="rating" className="discover__dropdown">
           <option value="">-- Rating --</option>
           <option value={9.0}>9+ stars</option>
           <option value={8.0}>8+ stars</option>
         </select>
-        <button className='searchbar__submit'>Discover films</button>
+        <button className='sort__button'>Discover films</button>
       </form>
 
 
@@ -155,7 +155,7 @@ const SearchResult = () => {
         <input
           type='text'
           name='search'
-          placeholder='find your film'
+          placeholder='Search by film title (e.g. James Bond'
           className='searchbar__input'
           onChange={(event) => setUserInput(event.target.value)}
           value={userInput}
