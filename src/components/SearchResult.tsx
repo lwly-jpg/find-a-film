@@ -29,23 +29,30 @@ const SearchResult = () => {
     })
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
-
+    let cancelled = false;
     if (discoverParams.releasedFrom > discoverParams.releasedBefore) {
       setMsg("'Released from' must be an earlier year than 'Released before'")
       return;
     }
 
-    await fetch(
+    fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&watch_region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}&with_release_type=1&with_watch_providers=${discoverParams.provider}`
     ).then((response) => response.json())
       .then((data) => {
-        setResults(data.results)
+        if (!cancelled) {
+          setResults(data.results)
+        }
+        
       })
+
+      return () => {
+        cancelled = true;
+      }
   };
 
-  const onSubmit = async (e: any) => {
+  const onSubmit = (e: any) => {
     e.preventDefault();
 
     // API requires at least one character
@@ -55,7 +62,7 @@ const SearchResult = () => {
       return;
     }
 
-    await fetch(
+   fetch(
       `https://api.themoviedb.org/3/search/movie?query=${userInput}&api_key=${apiKey}`
     )
       .then((response) => response.json())
