@@ -15,16 +15,16 @@ const SearchResult = () => {
       genre: "",
       rating: "",
       releasedFrom: "",
-      releasedBefore: ""
+      releasedBefore: "",
+      provider: ""
     }
   )
 
   const handleChange = (event: any) => {
-    const {genre} = event.target;
     setDiscoverParams(prevDiscoverParams => {
       return {
         ...prevDiscoverParams,
-        [event.target.name]: event.target.value
+        [event.target.name]: event.target.type === "providers" ? event.target.checked : event.target.value
       }
     })
   };
@@ -38,7 +38,7 @@ const SearchResult = () => {
     }
 
     await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}&with_release_type=1`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}&with_release_type=1&with_watch_providers=${discoverParams.provider}`
     ).then((response) => response.json())
       .then((data) => {
         setResults(data.results)
@@ -138,7 +138,7 @@ const SearchResult = () => {
     <div className='search'>
       <form className='discover__bar' onSubmit={handleSubmit}>
         <select id="genre" value={discoverParams.genre} onChange={handleChange} name="genre" className="discover__dropdown">
-          <option value="">-- Genre --</option>
+          <option value="">Genre</option>
           <option value={28}>Action</option>
           <option value={12}>Adventure</option>
           <option value={16}>Animation</option>
@@ -160,7 +160,7 @@ const SearchResult = () => {
           <option value={37}>Western</option>
         </select>
         <select id="rating" value={discoverParams.rating} onChange={handleChange} name="rating" className="discover__dropdown">
-          <option value="">-- Rating --</option>
+          <option value="">Rating</option>
           <option value={9.0}>9+ stars</option>
           <option value={8.0}>8+ stars</option>
           <option value={7.0}>7+ stars</option>
@@ -182,6 +182,17 @@ const SearchResult = () => {
           {generateYears().map((year) =>
             <option key={year} value={`${year}-01-01`}>{year}</option>
           )}
+        </select>
+        <select id="provider" value={discoverParams.provider} onChange={handleChange} name="provider" className="discover__dropdown">
+          <option value="">Available on</option>
+          <option value={8}>Netflix</option>
+          <option value={9}>Prime Video</option>
+          <option value={337}>Disney+</option>
+          <option value={39}>NOW TV</option>
+          <option value={38}>BBC iPlayer</option>
+          <option value={350}>Apple TV Plus</option>
+          <option value={531}>Paramount Plus</option>
+          <option value={103}>All 4</option>
         </select>
         <button className='sort__button'>Discover films</button>
       </form>
