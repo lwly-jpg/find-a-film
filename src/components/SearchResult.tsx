@@ -15,6 +15,7 @@ const SearchResult = () => {
       genre: "",
       rating: "",
       releasedFrom: "",
+      releasedBefore: ""
     }
   )
 
@@ -32,7 +33,7 @@ const SearchResult = () => {
     event.preventDefault();
     console.log(discoverParams)
     await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&primary_release_date.gte=${discoverParams.releasedFrom}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}`
     ).then((response) => response.json())
       .then((data) => {
         setResults(data.results)
@@ -167,6 +168,12 @@ const SearchResult = () => {
         </select>
         <select id="releasedFrom" value={discoverParams.releasedFrom} onChange={handleChange} name="releasedFrom" className='discover__dropdown'>
           <option value="">Released since</option>
+          {generateYears().map((year) =>
+            <option key={year} value={`${year}-01-01`}>{year}</option>
+          )}
+        </select>
+        <select id="releasedBefore" value={discoverParams.releasedBefore} onChange={handleChange} name="releasedBefore" className='discover__dropdown'>
+          <option value="">Released before</option>
           {generateYears().map((year) =>
             <option key={year} value={`${year}-01-01`}>{year}</option>
           )}
