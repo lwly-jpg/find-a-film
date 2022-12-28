@@ -117,6 +117,12 @@ const SearchResult = () => {
     }
   }
 
+  const generateDates = () => {
+    let currentYear = (new Date).getFullYear();
+    return Array.from(new Array(120), (index) => (currentYear - index)) 
+
+  }
+
   return (
     <div className='search'>
       <form className='searchbar' onSubmit={handleSubmit}>
