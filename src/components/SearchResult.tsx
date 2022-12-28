@@ -196,7 +196,6 @@ const SearchResult = () => {
           <option value={9}>Prime Video</option>
           <option value={337}>Disney+</option>
           <option value={39}>NOW TV</option>
-          <option value={38}>BBC iPlayer</option>
           <option value={350}>Apple TV Plus</option>
           <option value={531}>Paramount Plus</option>
           <option value={103}>All 4</option>
