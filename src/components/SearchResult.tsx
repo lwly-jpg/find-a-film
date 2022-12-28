@@ -136,7 +136,7 @@ const SearchResult = () => {
 
   return (
     <div className='search'>
-      <form className='searchbar' onSubmit={handleSubmit}>
+      <form className='discover__bar' onSubmit={handleSubmit}>
         <select id="genre" value={discoverParams.genre} onChange={handleChange} name="genre" className="discover__dropdown">
           <option value="">-- Genre --</option>
           <option value={28}>Action</option>
