@@ -31,7 +31,12 @@ const SearchResult = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    console.log(discoverParams)
+
+    if (discoverParams.releasedFrom > discoverParams.releasedBefore) {
+      setMsg("'Released from' must be an earlier year than 'Released before'")
+      return;
+    }
+
     await fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}`
     ).then((response) => response.json())
