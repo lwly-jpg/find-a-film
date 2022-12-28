@@ -13,7 +13,8 @@ const SearchResult = () => {
   const [discoverParams, setDiscoverParams] = useState(
     {
       genre: "",
-      rating: ""
+      rating: "",
+      releasedFrom: "",
     }
   )
 
@@ -31,7 +32,7 @@ const SearchResult = () => {
     event.preventDefault();
     console.log(discoverParams)
     await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&primary_release_date.gte=${discoverParams.releasedFrom}`
     ).then((response) => response.json())
       .then((data) => {
         setResults(data.results)
@@ -117,10 +118,14 @@ const SearchResult = () => {
     }
   }
 
-  const generateDates = () => {
+  // generates list of 120 years based on current year
+  const generateYears = () => {
     let currentYear = (new Date).getFullYear();
-    return Array.from(new Array(120), (index) => (currentYear - index)) 
-
+    let yearsList = []
+    for (let i = 0; i < 120; i++) {
+      yearsList.push(currentYear - i)
+    }
+    return yearsList
   }
 
   return (
@@ -159,6 +164,12 @@ const SearchResult = () => {
           <option value={3.0}>3+ stars</option>
           <option value={2.0}>2+ stars</option>
           <option value={1.0}>1+ stars</option>
+        </select>
+        <select id="releasedFrom" value={discoverParams.releasedFrom} onChange={handleChange} name="releasedFrom" className='discover__dropdown'>
+          <option value="">Released since</option>
+          {generateYears().map((year) =>
+            <option key={year} value={`${year}-01-01`}>{year}</option>
+          )}
         </select>
         <button className='sort__button'>Discover films</button>
       </form>
