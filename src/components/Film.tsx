@@ -1,8 +1,10 @@
+import { fi } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import apiKey from '../apiKey';
 import star from '../images/star.png';
 import './Film.css';
+import SimilarFilmCard from './SimilarFilmCard';
 
 // Images for film posters
 const getPosterURL = (posterpath: string) => {
@@ -19,6 +21,7 @@ const Film = () => {
   const { film_id } = useParams();
   const [filmData, setFilmData] = useState<any>();
   const [watchProviders, setWatchProviders] = useState<any>();
+  const [similarFilms, setSimilarFilms] = useState<any>();
   const navigate = useNavigate();
 
   // GET filmData
@@ -49,7 +52,7 @@ const Film = () => {
       .then((response) => response.json())
       .then(async (data) => {
         if (!cancelled) {
-          setWatchProviders(data.results.GB); // .GB === country
+          setWatchProviders(data.results.GB.flatrate); // .GB === country, .flatrate === streaming
         }
       });
 
@@ -57,7 +60,29 @@ const Film = () => {
         cancelled = true;
       }
       
-  }, [film_id]);
+  }, [filmData]);
+
+  // GET similar films
+  useEffect(() => {
+    let cancelled = false;
+    fetch(
+      `https://api.themoviedb.org/3/movie/${film_id}/similar?api_key=${apiKey}&language=en-GB`
+    )
+      .then((response) => response.json())
+      .then(async (data) => {
+        if (!cancelled) {
+          setSimilarFilms(data.results);
+        }
+      });
+
+      return () => {
+        cancelled = true;
+      }
+      
+  }, [filmData]);
+
+  console.log(similarFilms)
+
 
   return (
     <>
@@ -101,7 +126,7 @@ const Film = () => {
           {watchProviders ? 
 
           <div className='film__providers'>
-          {watchProviders.flatrate.map((provider: any) => (
+          {watchProviders.map((provider: any) => (
             <img
               key={provider.provider_id}
               src={getIconURL(provider.logo_path)}
@@ -118,6 +143,19 @@ const Film = () => {
           <button onClick={() => navigate(-1)} className='back__button'>
           Back
           </button>
+
+          {similarFilms && 
+          <div className='similar__films'>
+            <h2 className='similar__films__header'>Films similar to <span className='film__title'>{filmData.title}</span></h2>
+            <div className='film_carousel'>
+              {similarFilms.map((film: any) => (
+                <SimilarFilmCard key={film.id} {...film} />
+              ))}
+            </div>
+          </div>
+          }
+
+
           <div className='data__source'>
           Watch provider data provided by{' '}
           <a href='https://www.justwatch.com/'>JustWatch</a>.
