@@ -19,6 +19,7 @@ const Film = () => {
   const { film_id } = useParams();
   const [filmData, setFilmData] = useState<any>();
   const [watchProviders, setWatchProviders] = useState<any>();
+  const [similarFilms, setSimilarFilms] = useState<any>();
   const navigate = useNavigate();
 
   // GET filmData
@@ -58,6 +59,28 @@ const Film = () => {
       }
       
   }, [film_id]);
+
+  // GET similar films
+  useEffect(() => {
+    let cancelled = false;
+    fetch(
+      `https://api.themoviedb.org/3/movie/${film_id}/similar?api_key=${apiKey}&language=en-GB`
+    )
+      .then((response) => response.json())
+      .then(async (data) => {
+        if (!cancelled) {
+          setSimilarFilms(data.results);
+        }
+      });
+
+      return () => {
+        cancelled = true;
+      }
+      
+  }, [film_id]);
+
+  console.log(similarFilms)
+
 
   return (
     <>
