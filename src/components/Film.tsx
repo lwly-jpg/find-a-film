@@ -1,3 +1,4 @@
+import { fi } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import apiKey from '../apiKey';
@@ -141,6 +142,25 @@ const Film = () => {
           <button onClick={() => navigate(-1)} className='back__button'>
           Back
           </button>
+          <div className='similar__films'>
+            <h2>Films similar to {filmData.title}</h2>
+            <div className='film_carousel'>
+              {similarFilms.map((film: any) => (
+          
+                <div className='film__card'>
+                  <img
+                className='film__image'
+                src={getPosterURL(film.poster_path)}
+                alt=''
+                  />
+                  <h3 className='fim__title'>
+                    {film.title}
+                  </h3>
+          
+                </div>
+              ))}
+            </div>
+          </div>
           <div className='data__source'>
           Watch provider data provided by{' '}
           <a href='https://www.justwatch.com/'>JustWatch</a>.
