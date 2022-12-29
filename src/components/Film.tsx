@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import apiKey from '../apiKey';
 import star from '../images/star.png';
 import './Film.css';
+import SimilarFilmCard from './SimilarFilmCard';
 
 // Images for film posters
 const getPosterURL = (posterpath: string) => {
@@ -122,7 +123,7 @@ const Film = () => {
             <span className='helper__blue'>Watch on: </span>
           </div>
 
-          {watchProviders.flatrate ? 
+          {watchProviders ? 
 
           <div className='film__providers'>
           {watchProviders.flatrate.map((provider: any) => (
@@ -142,25 +143,19 @@ const Film = () => {
           <button onClick={() => navigate(-1)} className='back__button'>
           Back
           </button>
+
+          {similarFilms && 
           <div className='similar__films'>
             <h2>Films similar to {filmData.title}</h2>
             <div className='film_carousel'>
               {similarFilms.map((film: any) => (
-          
-                <div className='film__card'>
-                  <img
-                className='film__image'
-                src={getPosterURL(film.poster_path)}
-                alt=''
-                  />
-                  <h3 className='fim__title'>
-                    {film.title}
-                  </h3>
-          
-                </div>
+                <SimilarFilmCard key={film.id} {...film} />
               ))}
             </div>
           </div>
+          }
+
+
           <div className='data__source'>
           Watch provider data provided by{' '}
           <a href='https://www.justwatch.com/'>JustWatch</a>.
