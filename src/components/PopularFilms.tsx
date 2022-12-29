@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import apiKey from '../apiKey';
 import '../components/SearchResult.css'
-import ResultCard from './ResultCard';
+import SimilarFilmCard from './SimilarFilmCard';
+
 
 const PopularFilms = () => {
   const [popularResults, setPopularResults] = useState([]);
@@ -34,16 +35,16 @@ const PopularFilms = () => {
   getPopular();
 
   return (
-    <div className='search'>
-      <h3 className='results__message'>{msg}</h3>
-      <div className='results__container'>
+    <div className='similar__films'>
+      <h3 className='similar__films__header'>{msg}</h3>
+      <div className='film_carousel'>
         {popularResults.filter((item: any) => {
           if (item.poster_path !== null && item.release_date < date ) {
             return item
           } return null
         })
         .map((result: any) => (
-          <ResultCard key={result.id} {...result} />
+          <SimilarFilmCard key={result.id} {...result} />
         ))}
       </div>
     </div>
