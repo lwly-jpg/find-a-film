@@ -20,3 +20,8 @@ similar films
   display: flex;     
   flex-direction: column; 
 }
+
+.film__title {
+  text-decoration: none;
+  color: var(--blue);
+}

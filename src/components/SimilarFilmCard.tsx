@@ -17,7 +17,7 @@ const SimilarFilmCard = (film: any) => {
     src={getPosterURL(film.poster_path)}
     alt=''
       />
-    <h3 className='fim__title'>
+    <h3 className='film__title'>
       {film.title}
     </h3>
     </div>

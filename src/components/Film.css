@@ -145,6 +145,14 @@ similar films
   display: grid;
 }
 
+.similar__films__header {
+  text-align: center;
+}
+
+.film__title {
+  color: var(--blue);
+}
+
 .film_carousel {
   display: flex;
   flex-wrap: nowrap;

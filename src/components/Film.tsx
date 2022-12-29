@@ -146,7 +146,7 @@ const Film = () => {
 
           {similarFilms && 
           <div className='similar__films'>
-            <h2>Films similar to {filmData.title}</h2>
+            <h2 className='similar__films__header'>Films similar to <span className='film__title'>{filmData.title}</span></h2>
             <div className='film_carousel'>
               {similarFilms.map((film: any) => (
                 <SimilarFilmCard key={film.id} {...film} />
