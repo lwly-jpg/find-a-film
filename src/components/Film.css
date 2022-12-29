@@ -136,3 +136,34 @@ film
     grid-column: 1 / -1;
   }
 }
+
+/***************************
+similar films
+***************************/
+
+.similar__films {
+  display: grid;
+}
+
+.similar__films__header {
+  text-align: center;
+}
+
+.film__title {
+  color: var(--blue);
+}
+
+.film_carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.film__card {
+  width: 175px;
+  font-size: 12px;
+  flex: 0 0 auto;        
+  display: flex;     
+  flex-direction: column; 
+}

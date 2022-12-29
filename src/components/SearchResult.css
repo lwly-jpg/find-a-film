@@ -15,17 +15,27 @@ Searchbar
   justify-content: center;
 }
 
+.discover__bar {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .searchbar__input,
-.searchbar__submit {
+.searchbar__submit,
+.discover__dropdown {
   padding: 10px;
 }
 
-.searchbar__input {
+.searchbar__input,
+.discover__dropdown {
   border-color: var(--outline-grey);
-  margin-right: 8px;
+  margin: 8px;
 }
 
-.searchbar__input:focus-visible {
+.searchbar__input:focus-visible,
+.discover__dropdown:focus-visible {
   border-color: var(--blue);
 }
 
