@@ -140,6 +140,11 @@ film
 /***************************
 similar films
 ***************************/
+
+.similar__films {
+  display: grid;
+}
+
 .film_carousel {
   display: flex;
   flex-wrap: nowrap;
