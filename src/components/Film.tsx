@@ -52,7 +52,7 @@ const Film = () => {
       .then((response) => response.json())
       .then(async (data) => {
         if (!cancelled) {
-          setWatchProviders(data.results.GB); // .GB === country
+          setWatchProviders(data.results.GB.flatrate); // .GB === country, .flatrate === streaming
         }
       });
 
@@ -60,7 +60,7 @@ const Film = () => {
         cancelled = true;
       }
       
-  }, [film_id]);
+  }, [filmData]);
 
   // GET similar films
   useEffect(() => {
@@ -79,7 +79,7 @@ const Film = () => {
         cancelled = true;
       }
       
-  }, [film_id]);
+  }, [filmData]);
 
   console.log(similarFilms)
 
@@ -126,7 +126,7 @@ const Film = () => {
           {watchProviders ? 
 
           <div className='film__providers'>
-          {watchProviders.flatrate.map((provider: any) => (
+          {watchProviders.map((provider: any) => (
             <img
               key={provider.provider_id}
               src={getIconURL(provider.logo_path)}
