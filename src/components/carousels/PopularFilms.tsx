@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import apiKey from "../apiKey";
-import "../components/SearchResult.css";
-import SimilarFilmCard from "./SimilarFilmCard";
+import apiKey from "../../apiKey";
+import Carousel from "./Carousel";
 const { format } = require("date-fns");
 let date = format(new Date(), "yyyy.MM.dd");
 
@@ -33,21 +32,16 @@ const PopularFilms = () => {
   }, []);
 
   return (
-    <div className="similar__films">
-      <h3 className="similar__films__header">{msg}</h3>
-      <div className="film_carousel">
-        {popularResults
-          .filter((item: any) => {
-            if (item.poster_path !== null && item.release_date < date) {
-              return item;
-            }
-            return null;
-          })
-          .map((result: any) => (
-            <SimilarFilmCard key={result.id} {...result} />
-          ))}
-      </div>
-    </div>
+    <Carousel
+      films={popularResults.filter((item: any) => {
+        if (item.poster_path !== null && item.release_date < date) {
+          return item;
+        }
+        return null;
+      })}
+      title={msg}
+      highlight={""}
+    />
   );
 };
 
