@@ -1,24 +1,4 @@
 /***************************
-similar films
-***************************/
-
-.similar-film__container {
-  display: grid;
-  max-width: 680px;
-}
-
-.similar-film__container--header {
-  text-align: center;
-}
-
-.similar-film__carousel {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 20px;
-  overflow-x: auto;
-}
-
-/***************************
 Carousel Card
 ***************************/
 
