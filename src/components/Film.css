@@ -149,6 +149,7 @@ similar films
 
 .similar__films {
   display: grid;
+  max-width: 680px;
 }
 
 .similar__films__header {
