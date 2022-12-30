@@ -1,10 +1,9 @@
-import { fi } from 'date-fns/locale';
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import apiKey from '../apiKey';
-import star from '../images/star.png';
-import './Film.css';
-import SimilarFilmCard from './SimilarFilmCard';
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import apiKey from "../apiKey";
+import star from "../images/star.png";
+import "./Film.css";
+import SimilarFilmCard from "./SimilarFilmCard";
 
 // Images for film posters
 const getPosterURL = (posterpath: string) => {
@@ -37,10 +36,9 @@ const Film = () => {
         }
       });
 
-      return () => {
-        cancelled = true;
-      }
-
+    return () => {
+      cancelled = true;
+    };
   }, [film_id]);
 
   // GET watchProviders data
@@ -56,11 +54,10 @@ const Film = () => {
         }
       });
 
-      return () => {
-        cancelled = true;
-      }
-      
-  }, [filmData]);
+    return () => {
+      cancelled = true;
+    };
+  }, [filmData, film_id]);
 
   // GET similar films
   useEffect(() => {
@@ -75,101 +72,92 @@ const Film = () => {
         }
       });
 
-      return () => {
-        cancelled = true;
-      }
-      
-  }, [filmData]);
-
-  console.log(similarFilms)
-
+    return () => {
+      cancelled = true;
+    };
+  }, [filmData, film_id]);
 
   return (
     <>
-    {filmData ? (
-
-      <div className='film__container'>
-      <h1 className='film__title'>{filmData.title}</h1>
-      <div className='film'>
-        <img
-          className='film__image'
-          src={getPosterURL(filmData.poster_path)}
-          alt=''
-        />
-        <div className='film__info'>
-          <div className='film__header--genre'>
-            {filmData.genres.map((genre: any) => genre.name).join(', ')}
-          </div>
-          <div className='film__header--rating'>
-            <img className='film__rating' src={star} alt='star-icon' />
-            <div className='film__score'>
-              {filmData.vote_average.toFixed(1)} / 10
-            </div>
-          </div>
-          <div className='film__header--imdb'>
-            <a href={`https://www.imdb.com/title/${filmData.imdb_id}`}>
-              View on IMDB
-            </a>
-          </div>
-          <div className='film__minor-info'>
-            <span className='helper__blue'>Released: </span>
-            {filmData.release_date.split('-')[0]}
-          </div>
-          <div className='film__minor-info'>
-            <span className='helper__blue'>Runtime: </span>
-            {convertRunTime(filmData.runtime)}
-          </div>
-          <div className='film__minor-info'>
-            <span className='helper__blue'>Watch on: </span>
-          </div>
-
-          {watchProviders ? 
-
-          <div className='film__providers'>
-          {watchProviders.map((provider: any) => (
+      {filmData && (
+        <div className="film__container">
+          <h1 className="film__title">{filmData.title}</h1>
+          <div className="film">
             <img
-              key={provider.provider_id}
-              src={getIconURL(provider.logo_path)}
-              alt={provider.provider_name + ' logo'}
+              className="film__image"
+              src={getPosterURL(filmData.poster_path)}
+              alt=""
             />
-          ))}
-          </div>
+            <div className="film__info">
+              <div className="film__header--genre">
+                {filmData.genres.map((genre: any) => genre.name).join(", ")}
+              </div>
+              <div className="film__header--rating">
+                <img className="film__rating" src={star} alt="star-icon" />
+                <div className="film__score">
+                  {filmData.vote_average.toFixed(1)} / 10
+                </div>
+              </div>
+              <div className="film__header--imdb">
+                <a href={`https://www.imdb.com/title/${filmData.imdb_id}`}>
+                  View on IMDB
+                </a>
+              </div>
+              <div className="film__minor-info">
+                <span className="helper__blue">Released: </span>
+                {filmData.release_date.split("-")[0]}
+              </div>
+              <div className="film__minor-info">
+                <span className="helper__blue">Runtime: </span>
+                {convertRunTime(filmData.runtime)}
+              </div>
+              <div className="film__minor-info">
+                <span className="helper__blue">Watch on: </span>
+              </div>
 
-          : "Not currently available to stream."}
-
+              {watchProviders ? (
+                <div className="film__providers">
+                  {watchProviders.map((provider: any) => (
+                    <img
+                      key={provider.provider_id}
+                      src={getIconURL(provider.logo_path)}
+                      alt={provider.provider_name + " logo"}
+                    />
+                  ))}
+                </div>
+              ) : (
+                "Not currently available to stream."
+              )}
+            </div>
+            <div className="film__description">{filmData.overview}</div>
           </div>
-          <div className='film__description'>{filmData.overview}</div>
-          </div>
-          <button onClick={() => navigate(-1)} className='back__button'>
-          Back
+          <button onClick={() => navigate(-1)} className="back__button">
+            Back
           </button>
 
-          {similarFilms && 
-          <div className='similar__films'>
-            <h2 className='similar__films__header'>Films similar to <span className='film__title'>{filmData.title}</span></h2>
-            <div className='film_carousel'>
-              {similarFilms.map((film: any) => (
-                <SimilarFilmCard key={film.id} {...film} />
-              ))}
+          {similarFilms && (
+            <div className="similar__films">
+              <h2 className="similar__films__header">
+                Films similar to{" "}
+                <span className="film__title">{filmData.title}</span>
+              </h2>
+              <div className="film_carousel">
+                {similarFilms.map((film: any) => (
+                  <SimilarFilmCard key={film.id} {...film} />
+                ))}
+              </div>
             </div>
-          </div>
-          }
+          )}
 
-
-          <div className='data__source'>
-          Watch provider data provided by{' '}
-          <a href='https://www.justwatch.com/'>JustWatch</a>.
+          <div className="data__source">
+            Watch provider data provided by{" "}
+            <a href="https://www.justwatch.com/">JustWatch</a>.
           </div>
         </div>
-    ) : 
-    
-    ( "" )}
-    
+      )}
     </>
   );
-
 };
-
 
 const convertRunTime = (totalMinutes: number) => {
   const hours = Math.floor(totalMinutes / 60);
