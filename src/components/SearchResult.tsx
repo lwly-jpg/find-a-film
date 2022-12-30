@@ -133,7 +133,7 @@ const SearchResult = () => {
 
   // generates list of 120 years based on current year
   const generateYears = () => {
-    let currentYear = (new Date).getFullYear();
+    let currentYear = new Date().getFullYear();
     let yearsList = []
     for (let i = 0; i < 120; i++) {
       yearsList.push(currentYear - i)
