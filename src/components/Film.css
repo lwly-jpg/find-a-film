@@ -81,12 +81,18 @@ film
   max-width: 500px;
 }
 
-.film__providers {
+.film__providers,
+.buy__providers,
+.stream__providers,
+.rent__providers {
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.film__providers img {
+.buy__providers img,
+.stream__providers img,
+.rent__providers img {
   width: 40px;
 }
 

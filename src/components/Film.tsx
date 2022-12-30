@@ -120,15 +120,15 @@ const Film = () => {
             <span className='helper__blue'>Runtime: </span>
             {convertRunTime(filmData.runtime)}
           </div>
-          <div className='film__minor-info'>
-            <span className='helper__blue'>Watch on: </span>
-          </div>
 
           {watchProviders ? 
 
-          <div>
+          <div className='film__providers'>
+            <div className='film__minor-info'>
+              <span className='helper__blue'>Stream: </span>
+            </div>
+
             <div className='stream__providers'>
-            <span className='helper__blue'>Stream: </span>
             {watchProviders.flatrate.map((provider: any) => (
               <img
                 key={provider.provider_id}
@@ -139,7 +139,9 @@ const Film = () => {
             </div>
 
           <div className='buy__providers'>
-          <span className='helper__blue'>Buy: </span>
+            <div className='film__minor-info'>
+              <span className='helper__blue'>Buy: </span>
+            </div>
           {watchProviders.buy.map((provider: any) => (
             <img
               key={provider.provider_id}
@@ -149,8 +151,10 @@ const Film = () => {
           ))}
           </div>
 
-          <div className='rent_providers'>
-          <span className='helper__blue'>Rent: </span>
+          <div className='rent__providers'>
+            <div className='film__minor-info'>
+              <span className='helper__blue'>Rent: </span>
+            </div>
           {watchProviders.rent.map((provider: any) => (
             <img
               key={provider.provider_id}
