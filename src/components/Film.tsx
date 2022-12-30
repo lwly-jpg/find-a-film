@@ -1,4 +1,3 @@
-import { fi } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import apiKey from '../apiKey';
@@ -52,7 +51,7 @@ const Film = () => {
       .then((response) => response.json())
       .then(async (data) => {
         if (!cancelled) {
-          setWatchProviders(data.results.GB.flatrate); // .GB === country, .flatrate === streaming
+          setWatchProviders(data.results.GB); // .GB === country
         }
       });
 
@@ -61,6 +60,8 @@ const Film = () => {
       }
       
   }, [filmData]);
+
+  console.log(watchProviders)
 
   // GET similar films
   useEffect(() => {
@@ -125,8 +126,21 @@ const Film = () => {
 
           {watchProviders ? 
 
-          <div className='film__providers'>
-          {watchProviders.map((provider: any) => (
+          <div>
+            <div className='stream__providers'>
+            <span className='helper__blue'>Stream: </span>
+            {watchProviders.flatrate.map((provider: any) => (
+              <img
+                key={provider.provider_id}
+                src={getIconURL(provider.logo_path)}
+                alt={provider.provider_name + ' logo'}
+              />
+            ))}
+            </div>
+
+          <div className='buy__providers'>
+          <span className='helper__blue'>Buy: </span>
+          {watchProviders.buy.map((provider: any) => (
             <img
               key={provider.provider_id}
               src={getIconURL(provider.logo_path)}
@@ -134,6 +148,19 @@ const Film = () => {
             />
           ))}
           </div>
+
+          <div className='rent_providers'>
+          <span className='helper__blue'>Rent: </span>
+          {watchProviders.rent.map((provider: any) => (
+            <img
+              key={provider.provider_id}
+              src={getIconURL(provider.logo_path)}
+              alt={provider.provider_name + ' logo'}
+            />
+          ))}
+          </div>
+
+        </div>
 
           : "Not currently available to stream."}
 
