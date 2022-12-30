@@ -49,7 +49,7 @@ const Film = () => {
     )
       .then((response) => response.json())
       .then(async (data) => {
-        if (!cancelled) {
+        if (!cancelled && data.results.GB) {
           setWatchProviders(data.results.GB.flatrate); // .GB === country, .flatrate === streaming
         }
       });
