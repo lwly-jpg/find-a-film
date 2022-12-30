@@ -15,6 +15,12 @@ const getIconURL = (iconpath: string) => {
   return `https://image.tmdb.org/t/p/original/${iconpath}`;
 };
 
+const convertRunTime = (totalMinutes: number) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const mins = totalMinutes % 60;
+  return `${hours} h : ${mins} m`;
+};
+
 const Film = () => {
   // film_id from the url
   const { film_id } = useParams();
@@ -49,8 +55,8 @@ const Film = () => {
     )
       .then((response) => response.json())
       .then(async (data) => {
-        if (!cancelled && data.results.GB) {
-          setWatchProviders(data.results.GB.flatrate); // .GB === country, .flatrate === streaming
+        if (!cancelled) {
+          setWatchProviders(data.results.GB); // .GB === country
         }
       });
 
@@ -111,19 +117,53 @@ const Film = () => {
                 <span className="helper__blue">Runtime: </span>
                 {convertRunTime(filmData.runtime)}
               </div>
-              <div className="film__minor-info">
-                <span className="helper__blue">Watch on: </span>
-              </div>
 
               {watchProviders ? (
                 <div className="film__providers">
-                  {watchProviders.map((provider: any) => (
-                    <img
-                      key={provider.provider_id}
-                      src={getIconURL(provider.logo_path)}
-                      alt={provider.provider_name + " logo"}
-                    />
-                  ))}
+                  {watchProviders.flatrate && (
+                    <div className="stream__providers">
+                      <div className="film__minor-info">
+                        <span className="helper__blue">Stream: </span>
+                      </div>
+                      {watchProviders.flatrate.map((provider: any) => (
+                        <img
+                          key={provider.provider_id}
+                          src={getIconURL(provider.logo_path)}
+                          alt={provider.provider_name + " logo"}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  {watchProviders.buy && (
+                    <div className="buy__providers">
+                      <div className="film__minor-info">
+                        <span className="helper__blue">Buy: </span>
+                      </div>
+                      {watchProviders.buy.map((provider: any) => (
+                        <img
+                          key={provider.provider_id}
+                          src={getIconURL(provider.logo_path)}
+                          alt={provider.provider_name + " logo"}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  {watchProviders.rent && (
+                    <div className="rent__providers">
+                      <div className="film__minor-info">
+                        <span className="helper__blue">Rent: </span>
+                      </div>
+                      {watchProviders.rent.map((provider: any) => (
+                        <img
+                          key={provider.provider_id}
+                          src={getIconURL(provider.logo_path)}
+                          alt={provider.provider_name + " logo"}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 "Not currently available to stream."
@@ -157,12 +197,6 @@ const Film = () => {
       )}
     </>
   );
-};
-
-const convertRunTime = (totalMinutes: number) => {
-  const hours = Math.floor(totalMinutes / 60);
-  const mins = totalMinutes % 60;
-  return `${hours} h : ${mins} m`;
 };
 
 export default Film;

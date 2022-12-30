@@ -1,4 +1,5 @@
 import Header from "./Header";
+import PopularFilms from "./PopularFilms";
 import SearchResult from "./SearchResult";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Header />
       <SearchResult />
+      <PopularFilms />
     </>
   );
 };

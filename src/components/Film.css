@@ -81,13 +81,19 @@ film
   max-width: 500px;
 }
 
-.film__providers {
+.film__providers,
+.buy__providers,
+.stream__providers,
+.rent__providers {
   display: flex;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
-.film__providers img {
-  width: 40px;
+.buy__providers img,
+.stream__providers img,
+.rent__providers img {
+  width: 30px;
 }
 
 .back__button {
@@ -143,6 +149,7 @@ similar films
 
 .similar__films {
   display: grid;
+  max-width: 680px;
 }
 
 .similar__films__header {
