@@ -87,13 +87,13 @@ film
 .rent__providers {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
 }
 
 .buy__providers img,
 .stream__providers img,
 .rent__providers img {
-  width: 40px;
+  width: 30px;
 }
 
 .back__button {

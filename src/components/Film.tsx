@@ -59,7 +59,7 @@ const Film = () => {
         cancelled = true;
       }
       
-  }, [filmData]);
+  }, [filmData, film_id]);
 
   console.log(watchProviders)
 
@@ -80,7 +80,7 @@ const Film = () => {
         cancelled = true;
       }
       
-  }, [filmData]);
+  }, [filmData, film_id]);
 
   console.log(similarFilms)
 
