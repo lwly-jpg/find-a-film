@@ -1,4 +1,4 @@
-describe('Search function', () => {
+describe('Conducting a search', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000')
   })
@@ -23,4 +23,13 @@ describe('Search function', () => {
 
     cy.contains("[class='results__message']","Must input a search")
   })
+
+  it("displays result sort label and buttons", () => {
+  cy.get(".searchbar").type("terminator")
+  cy.get("[class='searchbar__submit']").click();
+
+  cy.get(".sort__options").contains("Sort by:")
+  cy.get(".sort__options").find("button.sort__button").should('have.length',2)  
+  })
+
 })
