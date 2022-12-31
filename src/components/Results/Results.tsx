@@ -6,7 +6,9 @@ import SearchBar from "./SearchBar";
 const { format } = require("date-fns");
 let date = format(new Date(), "yyyy.MM.dd");
 
-const Results = ({results, setResults, msg, setMsg}: {results: any, setResults: any, msg: string, setMsg: any}) => {
+const Results = () => {
+  const [results, setResults] = useState([]);
+  const [msg, setMsg] = useState("");
   const [isSortedYear, setIsSortedYear] = useState(false);
   const [isSortedRating, setIsSortedRating] = useState(false);
   const [prevResults, setPrevResults] = useState<any>();
