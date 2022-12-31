@@ -23,6 +23,7 @@ const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) =>
   };
 
   const handleSubmit = (event: any) => {
+    setMsg("");
     event.preventDefault();
     let cancelled = false;
     if (discoverParams.releasedFrom > discoverParams.releasedBefore) {
