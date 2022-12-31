@@ -16,7 +16,7 @@ const Results = () => {
     genre: "",
     rating: "",
     releasedFrom: "",
-    releasedBefore: "",
+    releasedBefore: `${new Date().getFullYear()}`,
     provider: "",
   });
 
