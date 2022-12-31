@@ -5,8 +5,10 @@ import ResultCard from "./ResultCard";
 const { format } = require("date-fns");
 let date = format(new Date(), "yyyy.MM.dd");
 
-const Results = () => {
-  const [results, setResults] = useState([]);
+const Results = ({results, setResults}: {results: any, setResults: any}) => {
+
+  console.log(results)
+
   const [userInput, setUserInput] = useState("");
   const [msg, setMsg] = useState("");
   const [isSortedYear, setIsSortedYear] = useState(false);
