@@ -13,11 +13,13 @@ Searchbar
 .searchbar {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .discover__bar {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -29,6 +31,7 @@ Searchbar
 
 .searchbar__submit {
   padding: 5px;
+  height: 40px;
 }
 
 .searchbar__input,
