@@ -8,14 +8,14 @@ const getPosterURL = (posterpath: string) => {
 
 const CarouselCard = (film: any) => {
   return (
-    <Link to={"/film/" + film.id}>
+    <Link to={"/film/" + film.id} className="carousel-card__link">
       <div className="carousel-card">
         <img
           className="carousel-card__image"
           src={getPosterURL(film.poster_path)}
           alt=""
         />
-        <h3 className="carousel-card__title">{film.title}</h3>
+        <h2 className="carousel-card__title">{film.title}</h2>
       </div>
     </Link>
   );

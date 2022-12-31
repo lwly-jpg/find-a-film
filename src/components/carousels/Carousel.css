@@ -5,6 +5,7 @@ Carousel
 .carousel {
   display: grid;
   max-width: 680px;
+  padding: 20px;
 }
 
 .carousel__header {
@@ -12,7 +13,8 @@ Carousel
 }
 
 .carousel__title,
-.carousel__highlight {
+.carousel__highlight,
+.carousel-card__link {
   margin: 10px 0;
   text-align: center;
   text-decoration: none;
