@@ -32,4 +32,17 @@ describe('Conducting a search', () => {
   cy.get(".sort__options").find("button.sort__button").should('have.length',2)  
   })
 
+  it("does not display result container for invalid search", () => {
+    cy.get(".searchbar").type("'")
+    cy.get("[class='searchbar__submit']").click();
+  
+    cy.get(".results__container").should('be.empty')
+  })
+
+  it("does not display result container for empty search", () => {
+    cy.get(".searchbar")
+    cy.get("[class='searchbar__submit']").click();
+  
+    cy.get(".results__container").should('be.empty')
+  })
 })
