@@ -34,7 +34,8 @@ menu {
 }
 
 input,
-select {
+select,
+button {
   font-family: inherit;
   font-size: 1rem;
   border-radius: var(--border-radius);

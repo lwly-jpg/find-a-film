@@ -3,6 +3,7 @@ import PopularFilms from "../carousels/PopularFilms";
 import Results from "../Results/Results";
 
 const Home = () => {
+
   return (
     <>
       <Header />

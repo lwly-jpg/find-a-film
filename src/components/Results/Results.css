@@ -13,19 +13,25 @@ Searchbar
 .searchbar {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .discover__bar {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 .searchbar__input,
-.searchbar__submit,
 .discover__dropdown {
   padding: 10px;
+}
+
+.searchbar__submit {
+  padding: 10px;
+  height: 40px;
 }
 
 .searchbar__input,
