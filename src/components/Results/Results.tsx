@@ -1,11 +1,11 @@
 import { useState } from "react";
-import apiKey from "../apiKey";
-import "../components/SearchResult.css";
+import apiKey from "../../apiKey";
+import "./Results.css";
 import ResultCard from "./ResultCard";
 const { format } = require("date-fns");
 let date = format(new Date(), "yyyy.MM.dd");
 
-const SearchResult = () => {
+const Results = () => {
   const [results, setResults] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [msg, setMsg] = useState("");
@@ -283,4 +283,4 @@ const SearchResult = () => {
   );
 };
 
-export default SearchResult;
+export default Results;

@@ -1,5 +1,5 @@
-import TmdbLogo from "../images/tmdb_logo3.jpeg";
-import '../components/Footer.css'
+import TmdbLogo from "../../images/tmdb_logo3.jpeg";
+import './Footer.css'
 
 const Footer = () => {
   return (

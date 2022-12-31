@@ -1,0 +1,30 @@
+/***************************
+Carousel
+***************************/
+
+.carousel {
+  display: grid;
+  max-width: 680px;
+}
+
+.carousel__header {
+  text-align: center;
+}
+
+.carousel__title,
+.carousel__highlight {
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+.carousel__highlight {
+  color: var(--blue);
+}
+
+.carousel__container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+}
