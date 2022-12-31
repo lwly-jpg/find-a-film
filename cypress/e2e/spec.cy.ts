@@ -1,7 +1,13 @@
-describe('Page load', () => {
-  it('clicks the nav bar link ', () => {
+describe('Search function', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:3000')
-
-    cy.get('/')
   })
+  
+  it("gets Avatar results", () => {
+    cy.get(".searchbar").type("avatar")
+    cy.get("[class='searchbar__submit']").click();
+
+    cy.contains("Results for avatar")
+  })
+
 })
