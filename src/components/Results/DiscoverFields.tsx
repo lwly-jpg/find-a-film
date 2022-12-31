@@ -1,38 +1,54 @@
 import { useState } from "react";
 import apiKey from "../../apiKey";
+import Select from 'react-select'
 
 const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) => {
   const [discoverParams, setDiscoverParams] = useState({
     genre: "",
     rating: "",
     releasedFrom: "",
-    releasedBefore: `${new Date().getFullYear()}`,
-    provider: "",
+    releasedBefore: `${new Date().getFullYear()}`
   });
+
+  const [providerSelection, setProviderSelection] = useState<any>([])
+
+  const providerOptions = [
+    {value: 8, label: 'Netflix'},
+    {value: 9, label: 'Prime Video'},
+    {value: 337, label: 'Disney+'},
+    {value: 39, label: 'NOW TV'},
+    {value: 350, label: 'Apple TV Plus'},
+    {value: 531, label: 'Paramount Plus'},
+    {value: 103, label: 'All 4'}
+  ]
 
   const handleChange = (event: any) => {
     setDiscoverParams((prevDiscoverParams) => {
       return {
         ...prevDiscoverParams,
-        [event.target.name]:
-          event.target.type === "providers"
-            ? event.target.checked
-            : event.target.value,
+        [event.target.name]: event.target.value
       };
     });
   };
+
+  const generateProviders = () => {
+    const providers = providerSelection.map((provider: any) => provider.value)
+    return providers.join("|")
+  }
 
   const handleSubmit = (event: any) => {
     setMsg("");
     event.preventDefault();
     let cancelled = false;
+    let providersChoice = generateProviders();
+    console.log(providersChoice)
     if (discoverParams.releasedFrom > discoverParams.releasedBefore) {
       setMsg("'Released from' must be an earlier year than 'Released before'");
       return;
     }
 
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&watch_region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}&with_release_type=1&with_watch_providers=${discoverParams.provider}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&watch_region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}&with_release_type=1&with_watch_providers=${providersChoice}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -133,7 +149,16 @@ const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) =>
             </option>
           ))}
         </select>
-        <select
+        <Select options={providerOptions}
+          placeholder="Available on..."
+          isMulti
+          className="basic-multi-select"
+          classNamePrefix="select"
+          id="providers"
+          name="providers"
+          onChange={setProviderSelection}
+        />
+        {/* <select
           id="provider"
           value={discoverParams.provider}
           onChange={handleChange}
@@ -148,7 +173,7 @@ const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) =>
           <option value={350}>Apple TV Plus</option>
           <option value={531}>Paramount Plus</option>
           <option value={103}>All 4</option>
-        </select>
+        </select> */}
         <button className="sort__button">Discover films</button>
       </form>
   )
