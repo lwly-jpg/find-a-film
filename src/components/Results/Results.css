@@ -23,9 +23,12 @@ Searchbar
 }
 
 .searchbar__input,
-.searchbar__submit,
 .discover__dropdown {
   padding: 10px;
+}
+
+.searchbar__submit {
+  padding: 5px;
 }
 
 .searchbar__input,

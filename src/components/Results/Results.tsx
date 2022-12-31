@@ -1,56 +1,15 @@
 import { useState } from "react";
-import apiKey from "../../apiKey";
 import "./Results.css";
 import ResultCard from "./ResultCard";
 import DiscoverFields from "./DiscoverFields";
+import SearchBar from "./SearchBar";
 const { format } = require("date-fns");
 let date = format(new Date(), "yyyy.MM.dd");
 
 const Results = ({results, setResults, msg, setMsg}: {results: any, setResults: any, msg: string, setMsg: any}) => {
-
-  console.log(results)
-
-  const [userInput, setUserInput] = useState("");
   const [isSortedYear, setIsSortedYear] = useState(false);
   const [isSortedRating, setIsSortedRating] = useState(false);
   const [prevResults, setPrevResults] = useState<any>();
-
-
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-
-    // API requires at least one character
-    if (!userInput) {
-      setMsg("Must input a search");
-      setResults([]);
-      return;
-    }
-
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${userInput}&api_key=${apiKey}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setIsSortedYear(false); // search results initially un-sorted by Year
-        setIsSortedRating(false); // search results initially un-sorted by Rating
-
-        // no results returns nothing
-        // need empty array to avoid errors
-        const newResults = data.results || [];
-        if (data.results.length === 0) {
-          setMsg("Sorry no results");
-          setResults([]);
-        }
-        if (data.results.length > 0) {
-          setMsg(`Results for ${userInput}`);
-        }
-        setResults(newResults);
-        setUserInput("");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const sortByReleaseYear = () => {
     if (isSortedYear === false) {
@@ -100,18 +59,7 @@ const Results = ({results, setResults, msg, setMsg}: {results: any, setResults: 
   return (
     <div className="search">
       <DiscoverFields setResults={setResults} setMsg={setMsg} />
-
-      <form action="#" className="searchbar" onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="search"
-          placeholder="Search by film title (e.g. James Bond"
-          className="searchbar__input"
-          onChange={(event) => setUserInput(event.target.value)}
-          value={userInput}
-        />
-        <input type="submit" value="Search" className="searchbar__submit" />
-      </form>
+      <SearchBar setResults={setResults} setMsg={setMsg} setIsSortedYear={setIsSortedYear} setIsSortedRating={setIsSortedRating}/>
       <h3 className="results__message">{msg}</h3>
       {results.length > 0 && (
         <div className="sort__options">
