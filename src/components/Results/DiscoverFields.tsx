@@ -1,17 +1,18 @@
 import { useState } from "react";
 import apiKey from "../../apiKey";
-import Select from 'react-select'
+import Select from 'react-select';
 
 const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) => {
   const [discoverParams, setDiscoverParams] = useState({
-    genre: "",
     rating: "",
     releasedFrom: "",
     releasedBefore: `${new Date().getFullYear()}`
   });
 
-  const [providerSelection, setProviderSelection] = useState<any>([])
+  const [providerSelection, setProviderSelection] = useState<any>([]);
+  const [genreSelection, setGenreSelection] = useState<any>([]);
 
+  // Options for watch provider multi-select dropdown
   const providerOptions = [
     {value: 8, label: 'Netflix'},
     {value: 9, label: 'Prime Video'},
@@ -20,7 +21,30 @@ const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) =>
     {value: 350, label: 'Apple TV Plus'},
     {value: 531, label: 'Paramount Plus'},
     {value: 103, label: 'All 4'}
-  ]
+  ];
+
+  // Options for genre multi-select dropdown
+  const genreOptions = [
+    {value: 28, label: 'Action'},
+    {value: 12, label: 'Adventure'},
+    {value: 16, label: 'Animation'},
+    {value: 35, label: 'Comedy'},
+    {value: 80, label: 'Crime'},
+    {value: 99, label: 'Documentary'},
+    {value: 18, label: 'Drama'},
+    {value: 10751, label: 'Family'},
+    {value: 14, label: 'Fantasy'},
+    {value: 36, label: 'History'},
+    {value: 27, label: 'Horror'},
+    {value: 10402, label: 'Music'},
+    {value: 9648, label: 'Mystery'},
+    {value: 10749, label: 'Romance'},
+    {value: 878, label: 'Science Fiction'},
+    {value: 10770, label: 'TV Movie'},
+    {value: 53, label: 'Thriller'},
+    {value: 10752, label: 'War'},
+    {value: 37, label: 'Western'}
+  ];
 
   const handleChange = (event: any) => {
     setDiscoverParams((prevDiscoverParams) => {
@@ -31,24 +55,25 @@ const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) =>
     });
   };
 
-  const generateProviders = () => {
-    const providers = providerSelection.map((provider: any) => provider.value)
-    return providers.join("|")
-  }
+  // Generates formatted genre or provider options for API parameter
+  const generateOptions = (selection: any) => {
+    const options = selection.map((item: any) => item.value);
+    return options.join("|");
+  };
 
   const handleSubmit = (event: any) => {
     setMsg("");
     event.preventDefault();
     let cancelled = false;
-    let providersChoice = generateProviders();
-    console.log(providersChoice)
+    let providersChoice = generateOptions(providerSelection);
+    let genreChoice = generateOptions(genreSelection);
     if (discoverParams.releasedFrom > discoverParams.releasedBefore) {
       setMsg("'Released from' must be an earlier year than 'Released before'");
       return;
     }
 
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&watch_region=GB&language=en-GB&include_adult=false&page=1&with_genres=${discoverParams.genre}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}&with_release_type=1&with_watch_providers=${providersChoice}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&watch_region=GB&language=en-GB&include_adult=false&page=1&with_genres=${genreChoice}&vote_average.gte=${discoverParams.rating}&release_date.gte=${discoverParams.releasedFrom}&release_date.lte=${discoverParams.releasedBefore}&with_release_type=1&with_watch_providers=${providersChoice}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -75,7 +100,16 @@ const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) =>
 
   return (
     <form className="discover__bar" onSubmit={handleSubmit}>
-        <select
+      <Select options={genreOptions}
+          placeholder="Genres"
+          isMulti
+          className="basic-multi-select"
+          classNamePrefix="select"
+          id="genres"
+          name="genres"
+          onChange={setGenreSelection}
+        />
+        {/* <select
           id="genre"
           value={discoverParams.genre}
           onChange={handleChange}
@@ -102,7 +136,7 @@ const DiscoverFields = ({setResults, setMsg}: {setResults: any, setMsg: any}) =>
           <option value={53}>Thriller</option>
           <option value={10752}>War</option>
           <option value={37}>Western</option>
-        </select>
+        </select> */}
         <select
           id="rating"
           value={discoverParams.rating}
