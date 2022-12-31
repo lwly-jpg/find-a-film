@@ -5,12 +5,16 @@ import { useState } from "react";
 
 const Home = () => {
   const [results, setResults] = useState([]);
-
+  const [msg, setMsg] = useState("");
 
   return (
     <>
       <Header />
-      <Results results={results} setResults = {setResults}/>
+      <Results 
+        results={results} 
+        setResults = {setResults} 
+        msg={msg} 
+        setMsg={setMsg}/>
       <PopularFilms />
     </>
   );
