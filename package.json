@@ -28,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "husky": {
     "hooks": {
@@ -54,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^12.2.0",
     "husky": "^8.0.2",
     "prettier": "2.8.1",
     "pretty-quick": "^3.1.3"
