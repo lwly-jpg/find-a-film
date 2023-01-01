@@ -3,28 +3,28 @@ describe('Conducting a search', () => {
     cy.visit('http://localhost:3000')
   })
   
-  xit("displays result header", () => {
+  it("displays result header", () => {
     cy.get(".searchbar").type("avatar")
     cy.get(".searchbar__submit").click();
 
     cy.contains(".results__message","Results for avatar")
   })
 
-  xit("displays no result header for search yielding no results", () => {
+  it("displays no result header for search yielding no results", () => {
     cy.get(".searchbar").type("]")
     cy.get(".searchbar__submit").click();
 
     cy.contains(".results__message","Sorry no results")
   })
 
-  xit("displays custom message when search contains no user input", () => {
+  it("displays custom message when search contains no user input", () => {
     cy.get(".searchbar")
     cy.get(".searchbar__submit").click();
 
     cy.contains(".results__message","Must input a search")
   })
 
-  xit("displays result sort label and buttons", () => {
+  it("displays result sort label and buttons", () => {
   cy.get(".searchbar").type("terminator")
   cy.get(".searchbar__submit").click();
 
@@ -32,21 +32,21 @@ describe('Conducting a search', () => {
   cy.get(".sort__options").find("button.sort__button").should('have.length',2)  
   })
 
-  xit("does not display result container for invalid search", () => {
+  it("does not display result container for invalid search", () => {
     cy.get(".searchbar").type("'")
     cy.get(".searchbar__submit").click();
   
     cy.get(".results__container").should('be.empty')
   })
 
-  xit("does not display result container for empty search", () => {
+  it("does not display result container for empty search", () => {
     cy.get(".searchbar")
     cy.get(".searchbar__submit").click();
   
     cy.get(".results__container").should('be.empty')
   })
 
-  xit("after initial search, it shows release year and rating sort buttons", () => {
+  it("after initial search, it shows release year and rating sort buttons", () => {
     cy.get(".searchbar").type("michael clayton")
     cy.get(".searchbar__submit").click();
   
@@ -55,7 +55,7 @@ describe('Conducting a search', () => {
     cy.get(".sort__options").find('button').contains("Relevance").should('not.exist')
   })
 
-  xit("after filtering results by release year, only shows rating and relevance sort buttons", () => {
+  it("after filtering results by release year, only shows rating and relevance sort buttons", () => {
     cy.get(".searchbar").type("michael clayton")
     cy.get(".searchbar__submit").click();
     cy.get(".sort__options").contains('Release year').click()
@@ -65,7 +65,7 @@ describe('Conducting a search', () => {
     cy.get(".sort__options").find('button').contains("Release year").should('not.exist')
   })
 
-  xit("after filtering results by rating, only shows release year and relevance sort buttons", () => {
+  it("after filtering results by rating, only shows release year and relevance sort buttons", () => {
     cy.get(".searchbar").type("michael clayton")
     cy.get(".searchbar__submit").click();
     cy.get(".sort__options").contains('Rating').click()
