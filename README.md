@@ -1,6 +1,6 @@
 # Find-a-Film
 
-[![Find-a-Film](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/9qni5u&style=flat&logo=cypress)](https://cloud.cypress.io/projects/9qni5u/runs)
+[<img src="https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/9qni5u&style=flat&logo=cypress" height="25px" />](https://cloud.cypress.io/projects/9qni5u/runs)
 
 ## Contents
 
