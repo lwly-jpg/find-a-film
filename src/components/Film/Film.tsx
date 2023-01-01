@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import apiKey from "../apiKey";
-import star from "../images/star.png";
+import apiKey from "../../apiKey";
+import star from "../../images/star.png";
 import "./Film.css";
-import SimilarFilmCard from "./SimilarFilmCard";
+import Carousel from "../carousels/Carousel";
 
 // Images for film posters
 const getPosterURL = (posterpath: string) => {
@@ -176,17 +176,11 @@ const Film = () => {
           </button>
 
           {similarFilms && (
-            <div className="similar__films">
-              <h2 className="similar__films__header">
-                Films similar to{" "}
-                <span className="film__title">{filmData.title}</span>
-              </h2>
-              <div className="film_carousel">
-                {similarFilms.map((film: any) => (
-                  <SimilarFilmCard key={film.id} {...film} />
-                ))}
-              </div>
-            </div>
+            <Carousel
+              films={similarFilms}
+              title={`Films similar to`}
+              highlight={filmData.title}
+            />
           )}
 
           <div className="data__source">

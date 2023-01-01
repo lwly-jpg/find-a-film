@@ -1,12 +1,13 @@
 import Header from "./Header";
-import PopularFilms from "./PopularFilms";
-import SearchResult from "./SearchResult";
+import PopularFilms from "../carousels/PopularFilms";
+import Results from "../Results/Results";
 
 const Home = () => {
+
   return (
     <>
       <Header />
-      <SearchResult />
+      <Results />
       <PopularFilms />
     </>
   );

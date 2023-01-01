@@ -1,6 +1,6 @@
 
-import '../components/Nav.css'
-import typeLogo from '../images/typeface-based-logo.svg';
+import './Nav.css'
+import typeLogo from '../../images/typeface-based-logo.svg';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
