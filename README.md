@@ -1,4 +1,6 @@
-# find-a-film
+# Find-a-Film
+
+[![Find-a-Film](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/9qni5u&style=flat&logo=cypress)](https://cloud.cypress.io/projects/9qni5u/runs)
 
 ## Contents
 
@@ -82,6 +84,7 @@ Technologies used:
 - More data collected from multiple endpoints
 - `Fetch` efficiency refactors and refinements for UX
 - Refactor for SOLID components and enabling future scaling
+- Frontend e2e testing with Cypress
 
 ### 🧑‍💻 Version 3 (TBC)
 
