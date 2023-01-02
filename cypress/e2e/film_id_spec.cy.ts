@@ -1,3 +1,6 @@
+/// <reference types="cypress" />
+// @ts-check
+
 describe('Selecting an individual film from search results', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
