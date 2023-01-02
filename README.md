@@ -80,7 +80,7 @@ Technologies & Tools:
 
 ### 🚀 Version 2
 
-[<img src="https://i.ibb.co/qBVQdZn/find-a-film-v2.png" alt="find-a-film-v2">]
+<img src="https://i.ibb.co/qBVQdZn/find-a-film-v2.png" alt="find-a-film-v2" width="500px">
 
 - `Discovery` - users can discover films based on different search parameters, including watch providers (e.g. Netflix, Prime Video) and genres (e.g. Horror, Comedy)
 - `Popular` films listed on the homepage, to help inspire users before they search
