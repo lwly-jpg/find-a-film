@@ -31,7 +31,9 @@ provide the user with all they need to make the best movie choice.
 Eager to further our learning during the Christmas break, we created a team to
 design a project. It allowed us to reinforce our knowledge in `React` and
 `asynchronous data requests` as well as challenging ourselves with new skills in
-`Typescript`.
+`TypeScript`.
+
+Our user problem was centered around having access to multiple streaming platforms (e.g. Netflix, Prime Video, Disney+), but feeling like it was always hard to find a good film to watch.
 
 We wanted to solve a genuine need for the group and so `find-a-film` was decided
 on based on the following considerations:
@@ -41,37 +43,36 @@ on based on the following considerations:
 - Too much information
 - Clunky design
 
-👍 This app was built by the team to:
+👍 This app was built by the team to create a:
 
-- Create a better user experience
-- A site we would be happy to use
+- Better user experience
+- Site we would be happy to use
 
 ## How the product was built
 
-The team were distributed across the UK with varying availabilty. We remained
-organised by utilising these strategies:
+The team were distributed across the UK with varying availabilty. We managed our project with:
 
-- `MVP` focused to meet user stories
-- User Story Mapping on `Miro`
-- Feature Tickets via `Trello`
+- An `MVP` focused to meet user stories
+- User story mapping on `Miro`
+- Feature tickets via `Trello`
 - Team communication via `Slack`
 - `Slack bots` for `GitHub Pull Requests`
 
-Technologies used:
+Technologies & Tools:
 
-- `Figma`: For sharing designs
 - `React`: For a modern build
-- `Typescript`: To improve error checking with Types
+- `TypeScript`: To improve error checking with Types
+- `Figma`: For mocking up the UI and sharing designs
 
 ## 📅 Product Timeline
 
 ### 🚀 Version 1
 
 - MVP achieved
-- Searchbar
+- Search bar
 - Sorting
 - Complete styling
-- Dedicated film page
+- Dedicated film page, with basic film info and streaming providers
 
 **⏯️ Video run-through**
 
@@ -79,9 +80,11 @@ Technologies used:
 
 ### 🚀 Version 2
 
-- `Discovery` selection options implementing 3rd party styling
-- Image carousels for `popular` and `similar` movies
-- More data collected from multiple endpoints
+[<img src="https://i.ibb.co/qBVQdZn/find-a-film-v2.png" alt="find-a-film-v2">]
+
+- `Discovery` - users can discover films based on different search parameters, including watch providers (e.g. Netflix, Prime Video) and genres (e.g. Horror, Comedy)
+- `Popular` films listed on the homepage, to help inspire users before they search
+- Film details pages enriched with 'Buy' and 'Rent' provider options and a `similar` films carousel
 - `Fetch` efficiency refactors and refinements for UX
 - Refactor for SOLID components and enabling future scaling
 - Frontend e2e testing with Cypress
