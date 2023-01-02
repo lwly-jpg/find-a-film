@@ -1,3 +1,6 @@
+/// <reference types="cypress" />
+// @ts-check
+
 describe('Conducting a search', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
